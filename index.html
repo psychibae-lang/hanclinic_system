@@ -1395,8 +1395,14 @@ let statusSort='time';
 
 function init(){
   const hash=location.hash;
-  if(hash.startsWith('#s-')){loadPatientSession(hash.slice(3));}
-  else{showScreen('s-admin');renderCatGrid();renderScaleGrid();loadStatus();}
+  if(hash.startsWith('#s-')){
+    // 환자 검사 링크 직접 접근 - 로그인 없이 검사 진행
+    document.getElementById('login-screen').style.display='none';
+    loadPatientSession(hash.slice(3));
+  }
+  // 그 외: 로그인 화면이 기본으로 표시됨 (HTML에서 display:flex 설정)
+  renderCatGrid();
+  renderScaleGrid();
 }
 window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#s-'))loadPatientSession(location.hash.slice(3));});
 
@@ -3516,6 +3522,10 @@ function switchExamTab(tab, el) {
   const t = document.getElementById('exam-tab-' + tab);
   if (t) t.classList.add('act');
   if (el) el.classList.add('act');
+  if (tab === 'status') loadStatus();
+  if (tab === 'daeri') setTimeout(() => { if(typeof dr2InitCanvas==='function') dr2InitCanvas(); }, 200);
+  if (tab === 'chojin') setTimeout(() => { if(typeof cj2InitCanvas==='function') cj2InitCanvas(); }, 200);
+  if (tab === 'search') { if(typeof loadSearchTab==='function') loadSearchTab(); }
 }
 
 function switchRecepTab(tab, el) {
