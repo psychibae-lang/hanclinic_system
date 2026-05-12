@@ -64,8 +64,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .q-scale-nm{font-size:14px;font-weight:600;flex:1}.q-badge{font-size:12px;color:#888;white-space:nowrap}
 .prog{height:3px;background:#f0f0f0;border-radius:2px;overflow:hidden}
 .prog-fill{height:100%;background:#2563eb;transition:width 0.3s}
-.q-body{padding:1.25rem}
-.inst{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:14px 16px;margin-bottom:1.25rem;font-size:17px;font-weight:600;color:#1d4ed8;line-height:1.75;position:sticky;top:68px;z-index:5}
+.q-body{padding:0.5rem 1.25rem}
+.inst{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:14px 16px;margin-bottom:1.25rem;font-size:17px;font-weight:600;color:#1d4ed8;line-height:1.75;}
 .q-num{font-size:15px;color:#666;margin-bottom:8px;font-weight:600}
 .q-txt{font-size:22px;font-weight:700;line-height:1.7;margin-bottom:18px;color:#111}
 .opts{display:flex;flex-direction:column;gap:6px}
@@ -3480,15 +3480,13 @@ function doLogin() {
     if (pw === PW_EXAM) {
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('s-exam').classList.add('active');
-      renderCatCards(); renderScaleGrid('all'); loadStatus();
+      renderCatGrid(); renderScaleGrid('all'); loadStatus();
     } else { err.style.display = 'block'; }
   } else {
     if (pw === PW_RECEP) {
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('s-recep').classList.add('active');
       loadAppts();
-      // 접수컴퓨터용은 상태 목록도 미리 로드
-      loadStatus2();
     } else { err.style.display = 'block'; }
   }
 }
@@ -3537,19 +3535,32 @@ function switchRecepTab(tab, el) {
   if (tab === 'status2') loadStatus2();
 }
 
-// 접수컴퓨터용 완료현황 (status-list-body2 사용)
+// 접수컴퓨터용 완료현황 - sb 클라이언트 사용, status-list-body2에 렌더
 async function loadStatus2() {
   const body = document.getElementById('status-list-body2');
   if (!body) return;
   body.innerHTML = '<div class="empty"><div class="spinner"></div></div>';
-  // loadStatus() 와 동일 로직, body2에 렌더
-  const tbl='sessions', limit=200;
-  let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=${limit}`;
   try {
-    const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
-    const sessions = await r.json();
-    if (!sessions || !sessions.length) { body.innerHTML = '<div class="empty">오늘 검사 없음</div>'; return; }
-    body.innerHTML = sessions.map(s => renderStatusCard(s)).join('');
+    const {data:sessions} = await sb.from('sessions').select('*').order('created_at',{ascending:false});
+    if (!sessions || !sessions.length) { body.innerHTML = '<div class="empty">검사 없음</div>'; return; }
+    const now = Date.now();
+    const filtered = sessions.filter(s => {
+      if (s.status === '완료') return true;
+      return (now - new Date(s.created_at).getTime()) / 86400000 <= 7;
+    });
+    if (!filtered.length) { body.innerHTML = '<div class="empty">검사 없음</div>'; return; }
+    body.innerHTML = filtered.map(s => {
+      const dt = new Date(s.created_at);
+      const ds = `${String(dt.getFullYear()).slice(2)}${p2(dt.getMonth()+1)}${p2(dt.getDate())} ${p2(dt.getHours())}:${p2(dt.getMinutes())}`;
+      return `<div class="status-card">
+        <div class="status-top">
+          <div><div class="status-name">${s.patient_name||''} <span style="font-size:15px;color:#aaa;font-weight:600">${s.title||''}</span></div>
+          <div class="status-date">${ds}</div></div>
+          <span class="badge ${s.status==='완료'?'b-done':'b-wait'}">${s.status}</span>
+        </div>
+        <div class="scale-tags">${(s.scales||[]).map(id=>{const m=SCALES[id];return m?`<span class="sc-tag ${TAG_CLS[m.cat]||'tag-other'}">${m.name}</span>`:''}).join('')}</div>
+      </div>`;
+    }).join('');
   } catch(e) { body.innerHTML = '<div class="empty">불러오기 실패</div>'; }
 }
 
