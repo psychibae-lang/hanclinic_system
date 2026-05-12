@@ -94,11 +94,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .spinner{display:inline-block;width:18px;height:18px;border:2px solid #e8e8e8;border-top-color:#1a1a1a;border-radius:50%;animation:spin 0.7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* === 임상가 척도 CSS === */
+/* === 임상가 척도 CSS === */#exam-tab-clin /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap'); */
 
-  /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap'); */
-
-  :root {
+  :root{
     --bg: #f0f2f7;
     --surface: #ffffff;
     --surface2: #f5f6fa;
@@ -119,10 +117,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-family: 'Noto Sans KR', sans-serif;
     background: var(--bg);
     color: var(--text);
-  }
-
-  /* ─── Header ─── */
-  #exam-tab-clin header {
+  }#exam-tab-clin /* ─── Header ─── */
+  #exam-tab-clin header{
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     padding: 0 24px;
@@ -140,12 +136,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-weight: 600;
     color: var(--text);
     letter-spacing: -0.3px;
-  }
-  .header-sub { color: var(--text3); font-size: 12px; }
-  .header-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
-
-  /* ─── Patient bar ─── */
-  .patient-bar {
+  }#exam-tab-clin .header-sub{ color: var(--text3); font-size: 12px; }#exam-tab-clin .header-right{ margin-left: auto; display: flex; gap: 10px; align-items: center; }#exam-tab-clin /* ─── Patient bar ─── */
+  #exam-tab-clin .patient-bar{
     background: var(--surface2);
     border-bottom: 1px solid var(--border);
     padding: 7px 20px;
@@ -153,9 +145,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
-  }
-  .patient-bar label { font-size: 11px; color: var(--text2); margin-right: 4px; }
-  .patient-bar input {
+  }#exam-tab-clin .patient-bar label{ font-size: 11px; color: var(--text2); margin-right: 4px; }#exam-tab-clin .patient-bar input{
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--text);
@@ -164,16 +154,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-size: 12px;
     font-family: inherit;
     width: 120px;
-  }
-  .patient-bar input:focus { outline: none; border-color: var(--accent); }
-
-  /* ─── Layout ─── */
-  #exam-tab-clin .layout {
+  }#exam-tab-clin .patient-bar input:focus{ outline: none; border-color: var(--accent); }#exam-tab-clin /* ─── Layout ─── */
+  #exam-tab-clin .layout{
     display: flex;
-  }
-
-  /* ─── Sidebar ─── */
-  .sidebar {
+  }#exam-tab-clin /* ─── Sidebar ─── */
+  #exam-tab-clin .sidebar{
     width: 200px;
     flex-shrink: 0;
     background: var(--surface);
@@ -183,16 +168,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     top: 60px;
     height: calc(100vh - 60px);
     overflow-y: auto;
-  }
-  .sidebar-title {
+  }#exam-tab-clin .sidebar-title{
     padding: 0 16px 12px;
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--text3);
     font-weight: 500;
-  }
-  .nav-item {
+  }#exam-tab-clin .nav-item{
     padding: 7px 14px;
     cursor: pointer;
     font-size: 12px;
@@ -202,65 +185,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     gap: 8px;
     transition: all 0.15s;
     border-left: 3px solid transparent;
-  }
-  .nav-item:hover { background: var(--surface2); color: var(--text); }
-  .nav-item.active {
+  }#exam-tab-clin .nav-item:hover{ background: var(--surface2); color: var(--text); }#exam-tab-clin .nav-item.active{
     background: rgba(79,142,247,0.1);
     color: var(--accent);
     border-left-color: var(--accent);
     font-weight: 500;
-  }
-  .nav-badge {
+  }#exam-tab-clin .nav-badge{
     margin-left: auto;
     font-size: 10px;
     background: var(--surface2);
     padding: 2px 6px;
     border-radius: 10px;
     color: var(--text3);
-  }
-  .nav-item.done .nav-badge { background: rgba(62,201,126,0.15); color: var(--success); }
-
-  /* ─── Main ─── */
-  .main {
+  }#exam-tab-clin .nav-item.done .nav-badge{ background: rgba(62,201,126,0.15); color: var(--success); }#exam-tab-clin /* ─── Main ─── */
+  #exam-tab-clin .main{
     flex: 1;
     padding: 16px 20px;
     max-width: 860px;
-  }
-
-  /* ─── Scale panel ─── */
-  .scale-panel { display: none; }
-  .scale-panel.active { display: block; }
-
-  .scale-header {
+  }#exam-tab-clin /* ─── Scale panel ─── */
+  #exam-tab-clin .scale-panel{ display: none; }#exam-tab-clin .scale-panel.active{ display: block; }#exam-tab-clin .scale-header{
     margin-bottom: 12px;
-  }
-  .scale-title {
+  }#exam-tab-clin .scale-title{
     font-family: 'Noto Serif KR', serif;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 3px;
-  }
-  .scale-meta { font-size: 11px; color: var(--text3); }
-
-  /* ─── Items ─── */
-  .item-card {
+  }#exam-tab-clin .scale-meta{ font-size: 11px; color: var(--text3); }#exam-tab-clin /* ─── Items ─── */
+  #exam-tab-clin .item-card{
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
     margin-bottom: 6px;
     overflow: hidden;
     transition: border-color 0.2s;
-  }
-  .item-card:hover { border-color: #3a4570; }
-  .item-card.scored { border-color: rgba(79,142,247,0.4); }
-
-  .item-header {
+  }#exam-tab-clin .item-card:hover{ border-color: #3a4570; }#exam-tab-clin .item-card.scored{ border-color: rgba(79,142,247,0.4); }#exam-tab-clin .item-header{
     padding: 8px 14px 5px;
     font-size: 12.5px;
     font-weight: 500;
     color: var(--text);
-  }
-  .item-num {
+  }#exam-tab-clin .item-num{
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -271,17 +234,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-size: 10px;
     color: var(--text3);
     margin-right: 6px;
-  }
-  .item-card.scored .item-num { background: rgba(79,142,247,0.2); color: var(--accent); }
-
-  /* ─── Option buttons ─── */
-  .options {
+  }#exam-tab-clin .item-card.scored .item-num{ background: rgba(79,142,247,0.2); color: var(--accent); }#exam-tab-clin /* ─── Option buttons ─── */
+  #exam-tab-clin .options{
     padding: 2px 12px 8px;
     display: flex;
     flex-direction: column;
     gap: 3px;
-  }
-  .opt-btn {
+  }#exam-tab-clin .opt-btn{
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text2);
@@ -296,14 +255,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     display: flex;
     align-items: flex-start;
     gap: 8px;
-  }
-  .opt-btn:hover { background: var(--surface2); border-color: #3a4570; color: var(--text); }
-  .opt-btn.selected {
+  }#exam-tab-clin .opt-btn:hover{ background: var(--surface2); border-color: #3a4570; color: var(--text); }#exam-tab-clin .opt-btn.selected{
     background: rgba(79,142,247,0.12);
     border-color: var(--accent);
     color: var(--text);
-  }
-  .opt-score {
+  }#exam-tab-clin .opt-score{
     min-width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -315,17 +271,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-weight: 600;
     flex-shrink: 0;
     margin-top: 1px;
-  }
-  .opt-btn.selected .opt-score { background: var(--accent); color: #fff; }
-
-  /* ─── BPRS wide options ─── */
-  .options-row {
+  }#exam-tab-clin .opt-btn.selected .opt-score{ background: var(--accent); color: #fff; }#exam-tab-clin /* ─── BPRS wide options ─── */
+  #exam-tab-clin .options-row{
     padding: 2px 12px 8px;
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
-  }
-  .opt-chip {
+  }#exam-tab-clin .opt-chip{
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--text2);
@@ -335,23 +287,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-size: 10.5px;
     font-family: inherit;
     transition: all 0.15s;
-  }
-  .opt-chip:hover { border-color: #3a4570; color: var(--text); }
-  .opt-chip.selected {
+  }#exam-tab-clin .opt-chip:hover{ border-color: #3a4570; color: var(--text); }#exam-tab-clin .opt-chip.selected{
     background: rgba(79,142,247,0.18);
     border-color: var(--accent);
     color: var(--accent);
     font-weight: 500;
-  }
-
-  /* ─── Text input items (PSQI, WHODAS days) ─── */
-  .item-input {
+  }#exam-tab-clin /* ─── Text input items (PSQI, #exam-tab-clin WHODAS days) ─── */
+  #exam-tab-clin .item-input{
     padding: 4px 18px 14px;
     display: flex;
     align-items: center;
     gap: 12px;
-  }
-  .num-input {
+  }#exam-tab-clin .num-input{
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--text);
@@ -361,11 +308,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-family: inherit;
     width: 100px;
     text-align: center;
-  }
-  .num-input:focus { outline: none; border-color: var(--accent); }
-
-  /* ─── Score footer ─── */
-  .score-footer {
+  }#exam-tab-clin .num-input:focus{ outline: none; border-color: var(--accent); }#exam-tab-clin /* ─── Score footer ─── */
+  #exam-tab-clin .score-footer{
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -374,23 +318,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     display: flex;
     align-items: center;
     gap: 16px;
-  }
-  .score-big {
+  }#exam-tab-clin .score-big{
     font-size: 32px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     color: var(--accent);
     line-height: 1;
-  }
-  .score-interp {
+  }#exam-tab-clin .score-interp{
     font-size: 13px;
     color: var(--text2);
-  }
-  .score-interp strong { color: var(--text); font-size: 14px; }
-  .score-actions { margin-left: auto; display: flex; gap: 8px; }
-
-  /* ─── Buttons ─── */
-  .btn {
+  }#exam-tab-clin .score-interp strong{ color: var(--text); font-size: 14px; }#exam-tab-clin .score-actions{ margin-left: auto; display: flex; gap: 8px; }#exam-tab-clin /* ─── Buttons ─── */
+  #exam-tab-clin .btn{
     padding: 7px 14px;
     border-radius: 7px;
     font-size: 12px;
@@ -399,27 +337,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     cursor: pointer;
     border: none;
     transition: all 0.15s;
-  }
-  .btn-primary {
+  }#exam-tab-clin .btn-primary{
     background: var(--accent);
     color: #fff;
-  }
-  .btn-primary:hover { background: #3a7de8; }
-  .btn-outline {
+  }#exam-tab-clin .btn-primary:hover{ background: #3a7de8; }#exam-tab-clin .btn-outline{
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text2);
-  }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-success {
+  }#exam-tab-clin .btn-outline:hover{ border-color: var(--accent); color: var(--accent); }#exam-tab-clin .btn-success{
     background: rgba(62,201,126,0.15);
     border: 1px solid rgba(62,201,126,0.3);
     color: var(--success);
-  }
-  .btn-success:hover { background: rgba(62,201,126,0.25); }
-
-  /* ─── Toast ─── */
-  .toast {
+  }#exam-tab-clin .btn-success:hover{ background: rgba(62,201,126,0.25); }#exam-tab-clin /* ─── Toast ─── */
+  #exam-tab-clin .toast{
     position: fixed;
     bottom: 28px;
     right: 28px;
@@ -433,16 +363,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     z-index: 999;
     box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     max-width: 340px;
-  }
-  .toast.show { display: block; animation: slideUp 0.3s ease; }
-  @keyframes slideUp {
+  }#exam-tab-clin .toast.show{ display: block; animation: slideUp 0.3s ease; }#exam-tab-clin @keyframes slideUp{
     from { transform: translateY(20px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
-  }
-
-  /* ─── GDS radio ─── */
-  .gds-options { padding: 2px 12px 10px; display: flex; flex-direction: column; gap: 5px; }
-  .gds-opt {
+  }#exam-tab-clin /* ─── GDS radio ─── */
+  #exam-tab-clin .gds-options{ padding: 2px 12px 10px; display: flex; flex-direction: column; gap: 5px; }#exam-tab-clin .gds-opt{
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 7px;
@@ -454,13 +379,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     color: var(--text2);
     line-height: 1.5;
     transition: all 0.15s;
-  }
-  .gds-opt:hover { background: var(--surface2); color: var(--text); }
-  .gds-opt.selected { background: rgba(79,142,247,0.1); border-color: var(--accent); color: var(--text); }
-  .gds-stage { font-weight: 600; color: var(--accent); display: block; margin-bottom: 2px; }
-
-  /* ─── BPRS sub-score table ─── */
-  .sub-scores {
+  }#exam-tab-clin .gds-opt:hover{ background: var(--surface2); color: var(--text); }#exam-tab-clin .gds-opt.selected{ background: rgba(79,142,247,0.1); border-color: var(--accent); color: var(--text); }#exam-tab-clin .gds-stage{ font-weight: 600; color: var(--accent); display: block; margin-bottom: 2px; }#exam-tab-clin /* ─── BPRS sub-score table ─── */
+  #exam-tab-clin .sub-scores{
     background: var(--surface2);
     border-radius: 8px;
     padding: 14px 18px;
@@ -469,51 +389,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     font-size: 12px;
-  }
-  .sub-item { display: flex; justify-content: space-between; color: var(--text2); }
-  .sub-val { font-weight: 600; color: var(--text); }
-
-  /* ─── PSQI Component display ─── */
-  .psqi-comps {
+  }#exam-tab-clin .sub-item{ display: flex; justify-content: space-between; color: var(--text2); }#exam-tab-clin .sub-val{ font-weight: 600; color: var(--text); }#exam-tab-clin /* ─── PSQI Component display ─── */
+  #exam-tab-clin .psqi-comps{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     margin-top: 12px;
     font-size: 12px;
-  }
-  .psqi-comp { background: var(--surface2); border-radius: 7px; padding: 10px 14px; }
-  .psqi-comp-name { color: var(--text3); margin-bottom: 3px; }
-  .psqi-comp-val { font-size: 18px; font-weight: 700; color: var(--accent); }
-
-  /* scroll smooth */
-  html { scroll-behavior: smooth; }
-
-  @media print {
+  }#exam-tab-clin .psqi-comp{ background: var(--surface2); border-radius: 7px; padding: 10px 14px; }#exam-tab-clin .psqi-comp-name{ color: var(--text3); margin-bottom: 3px; }#exam-tab-clin .psqi-comp-val{ font-size: 18px; font-weight: 700; color: var(--accent); }#exam-tab-clin /* scroll smooth */
+  html{ scroll-behavior: smooth; }#exam-tab-clin @media print{
     @page { size: A4 portrait; margin: 10mm 12mm; }
 
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
     #exam-tab-clin { background: #fff !important; }
 
-    .sidebar, header, .patient-bar, .score-actions, .toast { display: none !important; }
-    .print-info { display: flex !important; justify-content: space-between; font-size: 11px; color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 8px; }
+    #exam-tab-clin .sidebar, #exam-tab-clin header, #exam-tab-clin .patient-bar, #exam-tab-clin .score-actions, #exam-tab-clin .toast{ display: none !important; }
+    #exam-tab-clin .print-info{ display: flex !important; justify-content: space-between; font-size: 11px; color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 8px; }
 
     #exam-tab-clin .layout { display: block !important; }
 
-    .main {
+    #exam-tab-clin .main{
       padding: 0 !important;
       max-width: 100% !important;
       width: 100% !important;
     }
 
-    .scale-panel { display: none !important; }
-    .scale-panel.active { display: block !important; }
+    #exam-tab-clin .scale-panel{ display: none !important; }
+    #exam-tab-clin .scale-panel.active{ display: block !important; }
 
-    .scale-header { margin-bottom: 6px !important; }
-    .scale-title { font-size: 14px !important; margin-bottom: 2px !important; }
-    .scale-meta { font-size: 10px !important; }
+    #exam-tab-clin .scale-header{ margin-bottom: 6px !important; }
+    #exam-tab-clin .scale-title{ font-size: 14px !important; margin-bottom: 2px !important; }
+    #exam-tab-clin .scale-meta{ font-size: 10px !important; }
 
-    .item-card {
+    #exam-tab-clin .item-card{
       break-inside: avoid !important;
       page-break-inside: avoid !important;
       margin-bottom: 4px !important;
@@ -521,46 +430,46 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       border: 1px solid #c8cfe0 !important;
     }
 
-    .item-header {
+    #exam-tab-clin .item-header{
       padding: 5px 10px 3px !important;
       font-size: 10px !important;
       font-weight: 600 !important;
     }
 
-    .item-num {
+    #exam-tab-clin .item-num{
       width: 16px !important; height: 16px !important;
       line-height: 16px !important; font-size: 9px !important;
     }
 
-    .options { padding: 2px 10px 6px !important; gap: 3px !important; }
-    .opt-btn {
+    #exam-tab-clin .options{ padding: 2px 10px 6px !important; gap: 3px !important; }
+    #exam-tab-clin .opt-btn{
       padding: 3px 8px !important;
       font-size: 9px !important;
       border-radius: 4px !important;
       gap: 5px !important;
     }
-    .opt-score { min-width: 14px !important; height: 14px !important; font-size: 8px !important; }
+    #exam-tab-clin .opt-score{ min-width: 14px !important; height: 14px !important; font-size: 8px !important; }
 
-    .options-row { padding: 2px 10px 6px !important; gap: 3px !important; }
-    .opt-chip { padding: 3px 8px !important; font-size: 9px !important; border-radius: 12px !important; }
+    #exam-tab-clin .options-row{ padding: 2px 10px 6px !important; gap: 3px !important; }
+    #exam-tab-clin .opt-chip{ padding: 3px 8px !important; font-size: 9px !important; border-radius: 12px !important; }
 
-    .item-input { padding: 2px 10px 6px !important; }
-    .num-input { padding: 4px 8px !important; font-size: 11px !important; width: 80px !important; }
+    #exam-tab-clin .item-input{ padding: 2px 10px 6px !important; }
+    #exam-tab-clin .num-input{ padding: 4px 8px !important; font-size: 11px !important; width: 80px !important; }
 
-    .score-footer { margin-top: 8px !important; padding: 10px 14px !important; border-radius: 7px !important; }
-    .score-big { font-size: 26px !important; }
-    .score-interp strong { font-size: 12px !important; }
+    #exam-tab-clin .score-footer{ margin-top: 8px !important; padding: 10px 14px !important; border-radius: 7px !important; }
+    #exam-tab-clin .score-big{ font-size: 26px !important; }
+    #exam-tab-clin .score-interp strong{ font-size: 12px !important; }
 
-    .psqi-comps { gap: 4px !important; margin-top: 6px !important; }
-    .psqi-comp { padding: 5px 8px !important; }
-    .psqi-comp-val { font-size: 13px !important; }
-    .psqi-comp-name { font-size: 9px !important; }
+    #exam-tab-clin .psqi-comps{ gap: 4px !important; margin-top: 6px !important; }
+    #exam-tab-clin .psqi-comp{ padding: 5px 8px !important; }
+    #exam-tab-clin .psqi-comp-val{ font-size: 13px !important; }
+    #exam-tab-clin .psqi-comp-name{ font-size: 9px !important; }
 
-    .sub-scores { padding: 8px 12px !important; gap: 4px !important; font-size: 10px !important; margin-top: 6px !important; }
+    #exam-tab-clin .sub-scores{ padding: 8px 12px !important; gap: 4px !important; font-size: 10px !important; margin-top: 6px !important; }
 
-    .gds-options { padding: 2px 10px 6px !important; gap: 4px !important; }
-    .gds-opt { padding: 5px 10px !important; font-size: 9px !important; line-height: 1.4 !important; }
-    .gds-stage { font-size: 9px !important; }
+    #exam-tab-clin .gds-options{ padding: 2px 10px 6px !important; gap: 4px !important; }
+    #exam-tab-clin .gds-opt{ padding: 5px 10px !important; font-size: 9px !important; line-height: 1.4 !important; }
+    #exam-tab-clin .gds-stage{ font-size: 9px !important; }
   }
 
 
