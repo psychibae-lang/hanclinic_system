@@ -3166,10 +3166,14 @@ async function insertToSupabase(table, payload) {
 let currentModalData = null;
 
 function loadSearchTab() {
-  document.getElementById('search-type').value = 'all';
-  document.getElementById('search-chart').value = '';
-  document.getElementById('search-name').value = '';
-  document.getElementById('search-results').innerHTML = '<div style="text-align:center;padding:20px;color:#9ca3af;font-size:17px;font-weight:700;">조회 버튼을 눌러주세요.</div>';
+  const t = document.getElementById('search-type2');
+  const c = document.getElementById('search-chart2');
+  const n = document.getElementById('search-name2');
+  const r = document.getElementById('search-results2');
+  if (t) t.value = 'all';
+  if (c) c.value = '';
+  if (n) n.value = '';
+  if (r) r.innerHTML = '<div style="text-align:center;padding:20px;color:#9ca3af;font-size:17px;font-weight:700;">조회 버튼을 눌러주세요.</div>';
 }
 
 async function doSearch() {
