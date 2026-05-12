@@ -3492,12 +3492,12 @@ function doLogin() {
 }
 
 function examSearchTabClick(el) {
-  if (searchUnlocked) {
-    switchExamTab('search', el);
-  } else {
-    document.getElementById('search-lock-modal').style.display = 'flex';
-    window._pendingSearchTabEl = el;
-  }
+  // 매번 비번 요청
+  searchUnlocked = false;
+  document.getElementById('search-lock-pw').value = '';
+  document.getElementById('search-lock-err').style.display = 'none';
+  document.getElementById('search-lock-modal').style.display = 'flex';
+  window._pendingSearchTabEl = el;
 }
 
 function unlockSearch() {
@@ -3677,7 +3677,7 @@ function loadSearchTab() {
   document.getElementById('search-type').value = 'all';
   document.getElementById('search-chart').value = '';
   document.getElementById('search-name').value = '';
-  doSearch();
+  document.getElementById('search-results').innerHTML = '<div style="text-align:center;padding:20px;color:#9ca3af;font-size:17px;font-weight:700;">조회 버튼을 눌러주세요.</div>';
 }
 
 async function doSearch() {
@@ -3694,8 +3694,8 @@ async function doSearch() {
       : [['daeri_records','daeri']];
   let allRows = [];
 
-  for (const [tbl, logicalType] of tableMap) {
-    let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
+  for (const [realTbl, logicalType] of tableMap) {
+    let url = `${SUPA_URL}/rest/v1/${realTbl}?order=created_at.desc&limit=100`;
     if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
     if (name)  url += `&${logicalType==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
