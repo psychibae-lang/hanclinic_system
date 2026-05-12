@@ -1140,6 +1140,10 @@ const PW_SEARCH_EXAM = 'hanriver0325';
 let currentLoginTab  = 'exam';
 let searchUnlocked   = false;
 
+const SUPA_URL    = 'https://rurbfcocihvapbtdzbyt.supabase.co';
+const SUPA_ANON   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1cmJmY29jaWh2YXBidGR6Ynl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTUzMzQsImV4cCI6MjA5MjUzMTMzNH0.Y89bwZlS5ciqfhF9IRbF8oGa9CmFRsP6msFbp7DVypc';
+const SUPA_BUCKET = 'signatures';
+
 const SCALES = {
   asrs:{no:1,title:'AD',name:'ASRS',cat:'other',tag:'ADHD',
     inst:'지난 6개월 동안 당신이 어떻게 느끼고 행동하였는지를 가장 잘 나타내주는 칸에 표시하세요.',
@@ -3114,10 +3118,6 @@ async function changePhone() {
 function unlockApp() { /* 구버전 호환용 */ }
 
 // ══ 접수 조회 ══════════════════════════════════════════
-const SUPA_URL  = 'https://rurbfcocihvapbtdzbyt.supabase.co';
-const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1cmJmY29jaWh2YXBidGR6Ynl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTUzMzQsImV4cCI6MjA5MjUzMTMzNH0.Y89bwZlS5ciqfhF9IRbF8oGa9CmFRsP6msFbp7DVypc';
-const SUPA_BUCKET = 'signatures';
-
 // ── Supabase: 서명 이미지 Storage 업로드 ──────────
 async function uploadSignature(sigDataUrl, filename) {
   try {
