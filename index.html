@@ -3093,27 +3093,37 @@ async function changePhone() {
   resEl.textContent = '처리 중...'; resEl.style.color = '#888';
   let updated = 0;
 
-  // chojin: phone 컬럼
+  // chojin: phone 컬럼 — 먼저 해당 차트 존재 확인 후 PATCH
   try {
-    const r = await fetch(`${SUPA_URL}/rest/v1/chojin?chart=eq.${encodeURIComponent(chart)}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
-      body: JSON.stringify({ phone: phone })
+    const chk = await fetch(`${SUPA_URL}/rest/v1/chojin?chart=eq.${encodeURIComponent(chart)}&select=id`, {
+      headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }
     });
-    const d = await r.json();
-    if (Array.isArray(d)) updated += d.length;
-  } catch(e) {}
+    const chkD = await chk.json();
+    if (Array.isArray(chkD) && chkD.length > 0) {
+      await fetch(`${SUPA_URL}/rest/v1/chojin?chart=eq.${encodeURIComponent(chart)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' },
+        body: JSON.stringify({ phone: phone })
+      });
+      updated += chkD.length;
+    }
+  } catch(e) { console.error('chojin phone update error:', e); }
 
   // daeri: visitor_phone 컬럼
   try {
-    const r = await fetch(`${SUPA_URL}/rest/v1/daeri?chart=eq.${encodeURIComponent(chart)}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
-      body: JSON.stringify({ visitor_phone: phone })
+    const chk = await fetch(`${SUPA_URL}/rest/v1/daeri?chart=eq.${encodeURIComponent(chart)}&select=id`, {
+      headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }
     });
-    const d = await r.json();
-    if (Array.isArray(d)) updated += d.length;
-  } catch(e) {}
+    const chkD = await chk.json();
+    if (Array.isArray(chkD) && chkD.length > 0) {
+      await fetch(`${SUPA_URL}/rest/v1/daeri?chart=eq.${encodeURIComponent(chart)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' },
+        body: JSON.stringify({ visitor_phone: phone })
+      });
+      updated += chkD.length;
+    }
+  } catch(e) { console.error('daeri phone update error:', e); }
 
   if (updated > 0) {
     resEl.textContent = `✅ ${updated}건 변경 완료`;
