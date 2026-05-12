@@ -3687,17 +3687,21 @@ async function doSearch() {
   const el    = document.getElementById('search-results');
   el.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">⏳ 조회 중...</div>';
 
-  const tables = type === 'all' ? ['chojin','daeri'] : [type];
+  const tableMap = type === 'all'
+    ? [['chojin_records','chojin'], ['daeri_records','daeri']]
+    : type === 'chojin'
+      ? [['chojin_records','chojin']]
+      : [['daeri_records','daeri']];
   let allRows = [];
 
-  for (const tbl of tables) {
+  for (const [tbl, logicalType] of tableMap) {
     let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
-    if (chart) url += `&chart=eq.${encodeURIComponent(chart)}`;
-    if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
+    if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
+    if (name)  url += `&${logicalType==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
       const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
       const rows = await r.json();
-      if (Array.isArray(rows)) allRows.push(...rows.map(row => ({...row, _table: tbl})));
+      if (Array.isArray(rows)) allRows.push(...rows.map(row => ({...row, _table: logicalType})));
     } catch(e) {}
   }
 
@@ -3727,13 +3731,14 @@ async function doSearch() {
 }
 
 async function openDetail(id, table) {
-  const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`, {
+  const realTbl = table === 'chojin' ? 'chojin_records' : table === 'daeri' ? 'daeri_records' : table;
+  const r = await fetch(`${SUPA_URL}/rest/v1/${realTbl}?id=eq.${id}`, {
     headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }
   });
   const rows = await r.json();
   if (!rows.length) return;
   const row = rows[0];
-  currentModalData = { row, table };
+  currentModalData = { row, table, realTbl };
 
   document.getElementById('modal-title').textContent =
     table === 'chojin' ? `초진 접수 — ${row.name||''}` : `대리 처방 — ${row.visitor_name||''}`;
@@ -3869,7 +3874,8 @@ async function saveEdit() {
   if (!confirm(`수정하시겠습니까?\n이름: ${newName}\n차트번호: ${newChart}`)) return;
   const nameField = table === 'chojin' ? 'name' : 'visitor_name';
   try {
-    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${encodeURIComponent(row.id)}`, {
+    const realTbl = table === 'chojin' ? 'chojin_records' : table === 'daeri' ? 'daeri_records' : table;
+    const r = await fetch(`${SUPA_URL}/rest/v1/${realTbl}?id=eq.${encodeURIComponent(row.id)}`, {
       method: 'PATCH',
       headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
       body: JSON.stringify({ [nameField]: newName, chart: newChart })
@@ -3898,7 +3904,8 @@ async function confirmDelete() {
   const name = table === 'chojin' ? (row.name||'') : (row.visitor_name||'');
   if (!confirm(`정말 삭제하시겠습니까?\n복구할 수 없습니다.\n\n대상: ${name} / 차트 ${row.chart||'-'}`)) return;
   try {
-    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${encodeURIComponent(row.id)}`, {
+    const realTbl2 = table === 'chojin' ? 'chojin_records' : table === 'daeri' ? 'daeri_records' : table;
+    const r = await fetch(`${SUPA_URL}/rest/v1/${realTbl2}?id=eq.${encodeURIComponent(row.id)}`, {
       method: 'DELETE',
       headers: { 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' }
     });
