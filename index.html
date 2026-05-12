@@ -939,7 +939,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
       <div id="modal-body" style="padding:16px 20px;overflow-y:auto;max-height:65vh;"></div>
       <div style="padding:12px 20px;border-top:1px solid #eee;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
-        <button onclick="openDeleteModal()" style="background:#dc2626;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;cursor:pointer;font-weight:700;margin-right:auto;">🗑️ 삭제</button>
         <button onclick="openEditModal()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:16px;cursor:pointer;font-weight:700;">✏️ 수정</button>
         <button onclick="printModalPDF()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:16px;cursor:pointer;font-weight:700;">🖨️ PDF</button>
         <button onclick="closeModal()" style="background:#6b7280;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;font-weight:700;cursor:pointer;">닫기</button>
@@ -1063,24 +1062,52 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <!-- 전화번호변경 탭 -->
   <div class="tab-content" id="recep-tab-phone" style="font-weight:700">
     <div style="max-width:480px;margin:0 auto;padding:24px 16px;">
-      <div style="font-size:18px;font-weight:700;color:#1a3a5c;margin-bottom:20px;">📞 전화번호 변경</div>
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-        <div style="margin-bottom:14px;">
-          <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">차트번호</label>
-          <input type="text" id="phone-chart" placeholder="차트번호 입력" inputmode="numeric"
-            style="width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:16px;font-weight:700;">
+      <div style="font-size:18px;font-weight:700;color:#1a3a5c;margin-bottom:16px;">📞 전화번호 변경</div>
+
+      <!-- STEP 1: 차트번호 조회 -->
+      <div id="pc-step1">
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
+          <div style="margin-bottom:16px;">
+            <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">차트번호</label>
+            <input type="text" id="phone-chart" placeholder="차트번호 입력" inputmode="numeric"
+              onkeydown="if(event.key==='Enter')pcSearch()"
+              style="width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:16px;font-weight:700;outline:none;box-sizing:border-box;">
+          </div>
+          <button onclick="pcSearch()"
+            style="width:100%;padding:14px;background:#1d4ed8;color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;">
+            🔍 현재 전화번호 조회
+          </button>
+          <div id="pc-search-msg" style="margin-top:12px;font-size:14px;font-weight:700;text-align:center;min-height:20px;"></div>
         </div>
-        <div style="margin-bottom:20px;">
-          <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">새 전화번호</label>
-          <input type="tel" id="phone-new" placeholder="01012345678" inputmode="numeric"
-            style="width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:16px;font-weight:700;">
-        </div>
-        <button onclick="changePhone()"
-          style="width:100%;padding:14px;background:#1d4ed8;color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;">
-          ✅ 전화번호 변경
-        </button>
-        <div id="phone-result" style="margin-top:14px;font-size:15px;font-weight:700;text-align:center;min-height:24px;"></div>
       </div>
+
+      <!-- STEP 2: 현재 번호 확인 + 새 번호 입력 -->
+      <div id="pc-step2" style="display:none;">
+        <div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:12px;padding:16px;margin-bottom:14px;">
+          <div style="font-size:11px;font-weight:700;color:#3b82f6;letter-spacing:0.5px;margin-bottom:6px;">📋 현재 등록된 전화번호</div>
+          <div style="font-size:12px;color:#6b7280;margin-bottom:4px;">차트번호 <strong id="pc-display-chart" style="color:#1f2937;"></strong></div>
+          <div style="font-size:20px;font-weight:700;color:#1e40af;letter-spacing:0.5px;" id="pc-current-phone"></div>
+        </div>
+        <div style="text-align:center;color:#9ca3af;font-size:13px;font-weight:600;margin-bottom:12px;">↓ 새 번호로 변경</div>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
+          <div style="margin-bottom:16px;">
+            <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">새 전화번호</label>
+            <input type="tel" id="phone-new" placeholder="01012345678" inputmode="numeric"
+              onkeydown="if(event.key==='Enter')changePhone()"
+              style="width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:16px;font-weight:700;outline:none;box-sizing:border-box;">
+          </div>
+          <button onclick="changePhone()"
+            style="width:100%;padding:14px;background:#16a34a;color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;">
+            ✅ 전화번호 변경하기
+          </button>
+          <button onclick="pcReset()"
+            style="width:100%;padding:11px;background:#f3f4f6;color:#4b5563;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">
+            ← 차트번호 다시 입력
+          </button>
+          <div id="phone-result" style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;min-height:24px;"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -3084,15 +3111,53 @@ async function doSearch3() {
   }).join('');
 }
 
-// 전화번호 변경
+// 전화번호 변경 - STEP1: 조회
+async function pcSearch() {
+  const chart = document.getElementById('phone-chart').value.trim();
+  const msgEl = document.getElementById('pc-search-msg');
+  if (!chart) { msgEl.textContent = '⚠️ 차트번호를 입력하세요.'; msgEl.style.color='#c0392b'; return; }
+  msgEl.textContent = '조회 중...'; msgEl.style.color = '#888';
+
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/patients?chart_no=eq.${encodeURIComponent(chart)}&select=chart_no,phone`, {
+      headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }
+    });
+    const data = await r.json();
+    if (!Array.isArray(data) || data.length === 0) {
+      msgEl.textContent = `⚠️ 차트번호 "${chart}"를 찾을 수 없습니다.`;
+      msgEl.style.color = '#c0392b';
+      return;
+    }
+    const patient = data[0];
+    const ph = patient.phone || '';
+    // 전화번호 포맷
+    const d = ph.replace(/[^0-9]/g,'');
+    const fmtPh = d.length===11 ? d.replace(/(\d{3})(\d{4})(\d{4})/,'$1-$2-$3')
+                : d.length===10 ? d.replace(/(\d{3})(\d{3,4})(\d{4})/,'$1-$2-$3') : (ph||'(미등록)');
+
+    document.getElementById('pc-display-chart').textContent = patient.chart_no;
+    document.getElementById('pc-current-phone').textContent = fmtPh;
+    document.getElementById('phone-new').value = '';
+    document.getElementById('phone-result').textContent = '';
+    msgEl.textContent = '';
+    document.getElementById('pc-step1').style.display = 'none';
+    document.getElementById('pc-step2').style.display = 'block';
+    setTimeout(() => document.getElementById('phone-new').focus(), 100);
+  } catch(e) {
+    msgEl.textContent = '⚠️ 조회 중 오류가 발생했습니다.';
+    msgEl.style.color = '#c0392b';
+    console.error(e);
+  }
+}
+
+// 전화번호 변경 - STEP2: 변경
 async function changePhone() {
-  const chart  = document.getElementById('phone-chart').value.trim();
-  const phone  = document.getElementById('phone-new').value.trim();
-  const resEl  = document.getElementById('phone-result');
-  if (!chart || !phone) { resEl.textContent = '⚠️ 차트번호와 전화번호를 모두 입력하세요.'; resEl.style.color='#c0392b'; return; }
+  const chart = document.getElementById('phone-chart').value.trim();
+  const phone = document.getElementById('phone-new').value.trim();
+  const resEl = document.getElementById('phone-result');
+  if (!phone) { resEl.textContent = '⚠️ 새 전화번호를 입력하세요.'; resEl.style.color='#c0392b'; return; }
   resEl.textContent = '처리 중...'; resEl.style.color = '#888';
 
-  // ── 1) patients 테이블 upsert (주 앱 기준 핵심 테이블) ──
   try {
     const r = await fetch(`${SUPA_URL}/rest/v1/patients`, {
       method: 'POST',
@@ -3100,18 +3165,31 @@ async function changePhone() {
       body: JSON.stringify({ chart_no: chart, phone: phone, updated_at: new Date().toISOString() })
     });
     if (r.status < 300) {
-      resEl.textContent = `✅ 전화번호 변경 완료 (${phone})`;
+      resEl.textContent = `✅ 변경 완료 → ${phone}`;
       resEl.style.color = '#16a34a';
-      document.getElementById('phone-chart').value = '';
-      document.getElementById('phone-new').value = '';
+      setTimeout(() => pcReset(), 1800);
       return;
     }
     const err = await r.text();
     console.error('patients upsert 실패:', r.status, err);
-  } catch(e) { console.error('patients upsert 오류:', e); }
+    resEl.textContent = '⚠️ 변경 실패. 콘솔(F12)에서 오류를 확인하세요.';
+    resEl.style.color = '#c0392b';
+  } catch(e) {
+    resEl.textContent = '⚠️ 오류가 발생했습니다.';
+    resEl.style.color = '#c0392b';
+    console.error(e);
+  }
+}
 
-  resEl.textContent = '⚠️ 변경 실패. 차트번호를 확인하거나 콘솔(F12)에서 오류를 확인하세요.';
-  resEl.style.color = '#c0392b';
+// 초기화
+function pcReset() {
+  document.getElementById('pc-step1').style.display = 'block';
+  document.getElementById('pc-step2').style.display = 'none';
+  document.getElementById('phone-chart').value = '';
+  document.getElementById('phone-new').value = '';
+  document.getElementById('pc-search-msg').textContent = '';
+  document.getElementById('phone-result').textContent = '';
+  setTimeout(() => document.getElementById('phone-chart').focus(), 100);
 }
 
 function unlockApp() { /* 구버전 호환용 */ }
