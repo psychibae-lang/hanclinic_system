@@ -113,17 +113,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     --text3: #8a94b0;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  #exam-tab-clin * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
+  #exam-tab-clin {
     font-family: 'Noto Sans KR', sans-serif;
     background: var(--bg);
     color: var(--text);
-    min-height: 100vh;
   }
 
   /* ─── Header ─── */
-  header {
+  #exam-tab-clin header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     padding: 0 24px;
@@ -135,7 +134,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     top: 0;
     z-index: 100;
   }
-  header h1 {
+  #exam-tab-clin header h1 {
     font-family: 'Noto Serif KR', serif;
     font-size: 18px;
     font-weight: 600;
@@ -169,9 +168,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   .patient-bar input:focus { outline: none; border-color: var(--accent); }
 
   /* ─── Layout ─── */
-  .layout {
+  #exam-tab-clin .layout {
     display: flex;
-    min-height: calc(100vh - 60px);
   }
 
   /* ─── Sidebar ─── */
@@ -495,12 +493,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-    html, body { background: #fff !important; }
+    #exam-tab-clin { background: #fff !important; }
 
     .sidebar, header, .patient-bar, .score-actions, .toast { display: none !important; }
     .print-info { display: flex !important; justify-content: space-between; font-size: 11px; color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 8px; }
 
-    .layout { display: block !important; }
+    #exam-tab-clin .layout { display: block !important; }
 
     .main {
       padding: 0 !important;
@@ -950,7 +948,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </select>
         <input type="text" id="search-chart" placeholder="차트번호" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:110px;">
         <input type="text" id="search-name" placeholder="이름" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:100px;">
-        <button onclick="doSearch()" style="padding:9px 18px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:17px;font-weight:700;cursor:pointer;">🔍 조회</button>
+        <button onclick="doSearch2()" style="padding:9px 18px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:17px;font-weight:700;cursor:pointer;">🔍 조회</button>
       </div>
     </div>
 
@@ -958,76 +956,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
   </div>
 
-  <!-- 상세 조회 모달 -->
-  <div id="detail-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;overflow-y:auto;">
-    <div style="background:#fff;max-width:480px;margin:60px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);">
-      <div style="background:#1a3a5c;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;">
-        <span id="modal-title" style="font-size:20px;font-weight:700;"></span>
-        <button onclick="closeModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
-      </div>
-      <div id="modal-body" style="padding:16px 20px;overflow-y:auto;max-height:65vh;"></div>
-      <div style="padding:12px 20px;border-top:1px solid #eee;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
-        <button onclick="openDeleteModal()" style="background:#dc2626;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;cursor:pointer;font-weight:700;margin-right:auto;">🗑️ 삭제</button>
-        <button onclick="openEditModal()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:16px;cursor:pointer;font-weight:700;">✏️ 수정</button>
-        <button onclick="printModalPDF()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:16px;cursor:pointer;font-weight:700;">🖨️ PDF</button>
-        <button onclick="closeModal()" style="background:#6b7280;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;font-weight:700;cursor:pointer;">닫기</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 수정 모달 -->
-  <div id="edit-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9100;overflow-y:auto;">
-    <div style="background:#fff;max-width:400px;margin:80px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
-      <div style="background:#d97706;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:16px;font-weight:bold;">✏️ 데이터 수정</span>
-        <button onclick="closeEditModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px;margin-bottom:14px;font-size:12px;color:#856404;">
-          ⚠️ 잘못 입력된 이름 또는 차트번호만 수정할 수 있습니다.
-        </div>
-        <div id="edit-pw-section">
-          <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">🔒 관리자 비밀번호</label>
-          <input type="password" id="edit-pw-input" placeholder="비밀번호 입력"
-            style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
-            onkeydown="if(event.key==='Enter') verifyEditPw()">
-          <button onclick="verifyEditPw()" style="width:100%;background:#1a3a5c;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">확인</button>
-        </div>
-        <div id="edit-fields-section" style="display:none;">
-          <div style="margin-bottom:12px;">
-            <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">이름 <span id="edit-name-label" style="color:#9ca3af;font-weight:400;"></span></label>
-            <input type="text" id="edit-name-input" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
-          </div>
-          <div style="margin-bottom:16px;">
-            <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">차트번호 <span id="edit-chart-label" style="color:#9ca3af;font-weight:400;"></span></label>
-            <input type="text" id="edit-chart-input" inputmode="numeric" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
-          </div>
-          <button onclick="saveEdit()" style="width:100%;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">💾 저장</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 삭제 모달 -->
-  <div id="delete-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9200;overflow-y:auto;">
-    <div style="background:#fff;max-width:380px;margin:100px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
-      <div style="background:#dc2626;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:16px;font-weight:bold;">🗑️ 데이터 삭제</span>
-        <button onclick="closeDeleteModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12px;color:#991b1b;line-height:1.6;">
-          ⚠️ <strong>삭제된 데이터는 복구할 수 없습니다.</strong>
-        </div>
-        <div id="delete-target-info" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px;font-size:12px;color:#374151;margin-bottom:12px;font-weight:600;"></div>
-        <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">🔒 관리자 비밀번호</label>
-        <input type="password" id="delete-pw-input" placeholder="비밀번호 입력"
-          style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
-          onkeydown="if(event.key==='Enter') confirmDelete()">
-        <button onclick="confirmDelete()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;">🗑️ 삭제 확인</button>
-      </div>
-    </div>
-  </div>
 
   <div class="tab-content" id="exam-tab-clin" style="font-weight:700;font-size:calc(1em + 3px)">
     <div id="clin-lock" style="display:none;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;gap:14px;padding:2rem">
@@ -1092,6 +1020,78 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 
 </div><!-- /s-exam -->
+
+<!-- 상세 조회 모달 -->
+<div id="detail-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;overflow-y:auto;">
+    <div style="background:#fff;max-width:480px;margin:60px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);">
+      <div style="background:#1a3a5c;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;">
+        <span id="modal-title" style="font-size:20px;font-weight:700;"></span>
+        <button onclick="closeModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+      </div>
+      <div id="modal-body" style="padding:16px 20px;overflow-y:auto;max-height:65vh;"></div>
+      <div style="padding:12px 20px;border-top:1px solid #eee;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
+        <button onclick="openDeleteModal()" style="background:#dc2626;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;cursor:pointer;font-weight:700;margin-right:auto;">🗑️ 삭제</button>
+        <button onclick="openEditModal()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:16px;cursor:pointer;font-weight:700;">✏️ 수정</button>
+        <button onclick="printModalPDF()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:16px;cursor:pointer;font-weight:700;">🖨️ PDF</button>
+        <button onclick="closeModal()" style="background:#6b7280;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;font-weight:700;cursor:pointer;">닫기</button>
+      </div>
+    </div>
+  </div>
+
+<!-- 수정 모달 -->
+<div id="edit-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9100;overflow-y:auto;">
+    <div style="background:#fff;max-width:400px;margin:80px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+      <div style="background:#d97706;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:16px;font-weight:bold;">✏️ 데이터 수정</span>
+        <button onclick="closeEditModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+      </div>
+      <div style="padding:18px 20px;">
+        <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px;margin-bottom:14px;font-size:12px;color:#856404;">
+          ⚠️ 잘못 입력된 이름 또는 차트번호만 수정할 수 있습니다.
+        </div>
+        <div id="edit-pw-section">
+          <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">🔒 관리자 비밀번호</label>
+          <input type="password" id="edit-pw-input" placeholder="비밀번호 입력"
+            style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
+            onkeydown="if(event.key==='Enter') verifyEditPw()">
+          <button onclick="verifyEditPw()" style="width:100%;background:#1a3a5c;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">확인</button>
+        </div>
+        <div id="edit-fields-section" style="display:none;">
+          <div style="margin-bottom:12px;">
+            <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">이름 <span id="edit-name-label" style="color:#9ca3af;font-weight:400;"></span></label>
+            <input type="text" id="edit-name-input" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
+          </div>
+          <div style="margin-bottom:16px;">
+            <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">차트번호 <span id="edit-chart-label" style="color:#9ca3af;font-weight:400;"></span></label>
+            <input type="text" id="edit-chart-input" inputmode="numeric" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
+          </div>
+          <button onclick="saveEdit()" style="width:100%;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">💾 저장</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- 삭제 모달 -->
+<div id="delete-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9200;overflow-y:auto;">
+    <div style="background:#fff;max-width:380px;margin:100px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
+      <div style="background:#dc2626;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:16px;font-weight:bold;">🗑️ 데이터 삭제</span>
+        <button onclick="closeDeleteModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+      </div>
+      <div style="padding:18px 20px;">
+        <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12px;color:#991b1b;line-height:1.6;">
+          ⚠️ <strong>삭제된 데이터는 복구할 수 없습니다.</strong>
+        </div>
+        <div id="delete-target-info" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px;font-size:12px;color:#374151;margin-bottom:12px;font-weight:600;"></div>
+        <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">🔒 관리자 비밀번호</label>
+        <input type="password" id="delete-pw-input" placeholder="비밀번호 입력"
+          style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
+          onkeydown="if(event.key==='Enter') confirmDelete()">
+        <button onclick="confirmDelete()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;">🗑️ 삭제 확인</button>
+      </div>
+    </div>
+  </div>
+
 
 <!-- ══════════════════════════════════ -->
 <!-- 접수컴퓨터용 화면                   -->
@@ -3364,6 +3364,14 @@ function copyCell(text, btn) {
   });
 }
 
+function refreshSearch() {
+  if (document.getElementById('s-recep') && document.getElementById('s-recep').classList.contains('active')) {
+    doSearch();
+  } else {
+    doSearch2();
+  }
+}
+
 function closeModal() { document.getElementById('detail-modal').style.display = 'none'; }
 
 function printModalPDF() {
@@ -3418,7 +3426,7 @@ async function saveEdit() {
       headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
       body: JSON.stringify({ [nameField]: newName, chart: newChart })
     });
-    if (r.ok) { toast('✅ 수정 완료!'); closeEditModal(); closeModal(); doSearch(); }
+    if (r.ok) { toast('✅ 수정 완료!'); closeEditModal(); closeModal(); refreshSearch(); }
     else { const err = await r.text(); alert(`❌ 수정 실패 (${r.status}):\n${err}`); }
   } catch(e) { alert(`❌ 오류: ${e.message}`); }
 }
@@ -3446,7 +3454,7 @@ async function confirmDelete() {
       method: 'DELETE',
       headers: { 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' }
     });
-    if (r.ok) { toast('🗑️ 삭제 완료!'); closeDeleteModal(); closeModal(); doSearch(); }
+    if (r.ok) { toast('🗑️ 삭제 완료!'); closeDeleteModal(); closeModal(); refreshSearch(); }
     else { const err = await r.text(); alert(`❌ 삭제 실패 (${r.status}):\n${err}`); }
   } catch(e) { alert(`❌ 오류: ${e.message}`); }
 }
