@@ -64,8 +64,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .q-scale-nm{font-size:14px;font-weight:600;flex:1}.q-badge{font-size:12px;color:#888;white-space:nowrap}
 .prog{height:3px;background:#f0f0f0;border-radius:2px;overflow:hidden}
 .prog-fill{height:100%;background:#2563eb;transition:width 0.3s}
-.q-body{padding:1.25rem}
-.inst{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:14px 16px;margin-bottom:1.25rem;font-size:17px;font-weight:600;color:#1d4ed8;line-height:1.75;position:sticky;top:68px;z-index:5}
+.q-body{padding:0.5rem 1.25rem}
+.inst{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:14px 16px;margin-bottom:1.25rem;font-size:17px;font-weight:600;color:#1d4ed8;line-height:1.75;}
 .q-num{font-size:15px;color:#666;margin-bottom:8px;font-weight:600}
 .q-txt{font-size:22px;font-weight:700;line-height:1.7;margin-bottom:18px;color:#111}
 .opts{display:flex;flex-direction:column;gap:6px}
@@ -94,11 +94,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .spinner{display:inline-block;width:18px;height:18px;border:2px solid #e8e8e8;border-top-color:#1a1a1a;border-radius:50%;animation:spin 0.7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* === 임상가 척도 CSS === */
+/* === 임상가 척도 CSS === */#exam-tab-clin /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap'); */
 
-  /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap'); */
-
-  :root {
+  :root{
     --bg: #f0f2f7;
     --surface: #ffffff;
     --surface2: #f5f6fa;
@@ -113,17 +111,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     --text3: #8a94b0;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  #exam-tab-clin * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
+  #exam-tab-clin {
     font-family: 'Noto Sans KR', sans-serif;
     background: var(--bg);
     color: var(--text);
-    min-height: 100vh;
-  }
-
-  /* ─── Header ─── */
-  header {
+  }#exam-tab-clin /* ─── Header ─── */
+  #exam-tab-clin header{
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     padding: 0 24px;
@@ -135,18 +130,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     top: 0;
     z-index: 100;
   }
-  header h1 {
+  #exam-tab-clin header h1 {
     font-family: 'Noto Serif KR', serif;
     font-size: 18px;
     font-weight: 600;
     color: var(--text);
     letter-spacing: -0.3px;
-  }
-  .header-sub { color: var(--text3); font-size: 12px; }
-  .header-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
-
-  /* ─── Patient bar ─── */
-  .patient-bar {
+  }#exam-tab-clin .header-sub{ color: var(--text3); font-size: 12px; }#exam-tab-clin .header-right{ margin-left: auto; display: flex; gap: 10px; align-items: center; }#exam-tab-clin /* ─── Patient bar ─── */
+  #exam-tab-clin .patient-bar{
     background: var(--surface2);
     border-bottom: 1px solid var(--border);
     padding: 7px 20px;
@@ -154,9 +145,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
-  }
-  .patient-bar label { font-size: 11px; color: var(--text2); margin-right: 4px; }
-  .patient-bar input {
+  }#exam-tab-clin .patient-bar label{ font-size: 11px; color: var(--text2); margin-right: 4px; }#exam-tab-clin .patient-bar input{
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--text);
@@ -165,17 +154,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-size: 12px;
     font-family: inherit;
     width: 120px;
-  }
-  .patient-bar input:focus { outline: none; border-color: var(--accent); }
-
-  /* ─── Layout ─── */
-  .layout {
+  }#exam-tab-clin .patient-bar input:focus{ outline: none; border-color: var(--accent); }#exam-tab-clin /* ─── Layout ─── */
+  #exam-tab-clin .layout{
     display: flex;
-    min-height: calc(100vh - 60px);
-  }
-
-  /* ─── Sidebar ─── */
-  .sidebar {
+  }#exam-tab-clin /* ─── Sidebar ─── */
+  #exam-tab-clin .sidebar{
     width: 200px;
     flex-shrink: 0;
     background: var(--surface);
@@ -185,16 +168,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     top: 60px;
     height: calc(100vh - 60px);
     overflow-y: auto;
-  }
-  .sidebar-title {
+  }#exam-tab-clin .sidebar-title{
     padding: 0 16px 12px;
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--text3);
     font-weight: 500;
-  }
-  .nav-item {
+  }#exam-tab-clin .nav-item{
     padding: 7px 14px;
     cursor: pointer;
     font-size: 12px;
@@ -204,65 +185,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     gap: 8px;
     transition: all 0.15s;
     border-left: 3px solid transparent;
-  }
-  .nav-item:hover { background: var(--surface2); color: var(--text); }
-  .nav-item.active {
+  }#exam-tab-clin .nav-item:hover{ background: var(--surface2); color: var(--text); }#exam-tab-clin .nav-item.active{
     background: rgba(79,142,247,0.1);
     color: var(--accent);
     border-left-color: var(--accent);
     font-weight: 500;
-  }
-  .nav-badge {
+  }#exam-tab-clin .nav-badge{
     margin-left: auto;
     font-size: 10px;
     background: var(--surface2);
     padding: 2px 6px;
     border-radius: 10px;
     color: var(--text3);
-  }
-  .nav-item.done .nav-badge { background: rgba(62,201,126,0.15); color: var(--success); }
-
-  /* ─── Main ─── */
-  .main {
+  }#exam-tab-clin .nav-item.done .nav-badge{ background: rgba(62,201,126,0.15); color: var(--success); }#exam-tab-clin /* ─── Main ─── */
+  #exam-tab-clin .main{
     flex: 1;
     padding: 16px 20px;
     max-width: 860px;
-  }
-
-  /* ─── Scale panel ─── */
-  .scale-panel { display: none; }
-  .scale-panel.active { display: block; }
-
-  .scale-header {
+  }#exam-tab-clin /* ─── Scale panel ─── */
+  #exam-tab-clin .scale-panel{ display: none; }#exam-tab-clin .scale-panel.active{ display: block; }#exam-tab-clin .scale-header{
     margin-bottom: 12px;
-  }
-  .scale-title {
+  }#exam-tab-clin .scale-title{
     font-family: 'Noto Serif KR', serif;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 3px;
-  }
-  .scale-meta { font-size: 11px; color: var(--text3); }
-
-  /* ─── Items ─── */
-  .item-card {
+  }#exam-tab-clin .scale-meta{ font-size: 11px; color: var(--text3); }#exam-tab-clin /* ─── Items ─── */
+  #exam-tab-clin .item-card{
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
     margin-bottom: 6px;
     overflow: hidden;
     transition: border-color 0.2s;
-  }
-  .item-card:hover { border-color: #3a4570; }
-  .item-card.scored { border-color: rgba(79,142,247,0.4); }
-
-  .item-header {
+  }#exam-tab-clin .item-card:hover{ border-color: #3a4570; }#exam-tab-clin .item-card.scored{ border-color: rgba(79,142,247,0.4); }#exam-tab-clin .item-header{
     padding: 8px 14px 5px;
     font-size: 12.5px;
     font-weight: 500;
     color: var(--text);
-  }
-  .item-num {
+  }#exam-tab-clin .item-num{
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -273,17 +234,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-size: 10px;
     color: var(--text3);
     margin-right: 6px;
-  }
-  .item-card.scored .item-num { background: rgba(79,142,247,0.2); color: var(--accent); }
-
-  /* ─── Option buttons ─── */
-  .options {
+  }#exam-tab-clin .item-card.scored .item-num{ background: rgba(79,142,247,0.2); color: var(--accent); }#exam-tab-clin /* ─── Option buttons ─── */
+  #exam-tab-clin .options{
     padding: 2px 12px 8px;
     display: flex;
     flex-direction: column;
     gap: 3px;
-  }
-  .opt-btn {
+  }#exam-tab-clin .opt-btn{
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text2);
@@ -298,14 +255,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     display: flex;
     align-items: flex-start;
     gap: 8px;
-  }
-  .opt-btn:hover { background: var(--surface2); border-color: #3a4570; color: var(--text); }
-  .opt-btn.selected {
+  }#exam-tab-clin .opt-btn:hover{ background: var(--surface2); border-color: #3a4570; color: var(--text); }#exam-tab-clin .opt-btn.selected{
     background: rgba(79,142,247,0.12);
     border-color: var(--accent);
     color: var(--text);
-  }
-  .opt-score {
+  }#exam-tab-clin .opt-score{
     min-width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -317,17 +271,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-weight: 600;
     flex-shrink: 0;
     margin-top: 1px;
-  }
-  .opt-btn.selected .opt-score { background: var(--accent); color: #fff; }
-
-  /* ─── BPRS wide options ─── */
-  .options-row {
+  }#exam-tab-clin .opt-btn.selected .opt-score{ background: var(--accent); color: #fff; }#exam-tab-clin /* ─── BPRS wide options ─── */
+  #exam-tab-clin .options-row{
     padding: 2px 12px 8px;
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
-  }
-  .opt-chip {
+  }#exam-tab-clin .opt-chip{
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--text2);
@@ -337,23 +287,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-size: 10.5px;
     font-family: inherit;
     transition: all 0.15s;
-  }
-  .opt-chip:hover { border-color: #3a4570; color: var(--text); }
-  .opt-chip.selected {
+  }#exam-tab-clin .opt-chip:hover{ border-color: #3a4570; color: var(--text); }#exam-tab-clin .opt-chip.selected{
     background: rgba(79,142,247,0.18);
     border-color: var(--accent);
     color: var(--accent);
     font-weight: 500;
-  }
-
-  /* ─── Text input items (PSQI, WHODAS days) ─── */
-  .item-input {
+  }#exam-tab-clin /* ─── Text input items (PSQI, #exam-tab-clin WHODAS days) ─── */
+  #exam-tab-clin .item-input{
     padding: 4px 18px 14px;
     display: flex;
     align-items: center;
     gap: 12px;
-  }
-  .num-input {
+  }#exam-tab-clin .num-input{
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--text);
@@ -363,11 +308,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     font-family: inherit;
     width: 100px;
     text-align: center;
-  }
-  .num-input:focus { outline: none; border-color: var(--accent); }
-
-  /* ─── Score footer ─── */
-  .score-footer {
+  }#exam-tab-clin .num-input:focus{ outline: none; border-color: var(--accent); }#exam-tab-clin /* ─── Score footer ─── */
+  #exam-tab-clin .score-footer{
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -376,23 +318,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     display: flex;
     align-items: center;
     gap: 16px;
-  }
-  .score-big {
+  }#exam-tab-clin .score-big{
     font-size: 32px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     color: var(--accent);
     line-height: 1;
-  }
-  .score-interp {
+  }#exam-tab-clin .score-interp{
     font-size: 13px;
     color: var(--text2);
-  }
-  .score-interp strong { color: var(--text); font-size: 14px; }
-  .score-actions { margin-left: auto; display: flex; gap: 8px; }
-
-  /* ─── Buttons ─── */
-  .btn {
+  }#exam-tab-clin .score-interp strong{ color: var(--text); font-size: 14px; }#exam-tab-clin .score-actions{ margin-left: auto; display: flex; gap: 8px; }#exam-tab-clin /* ─── Buttons ─── */
+  #exam-tab-clin .btn{
     padding: 7px 14px;
     border-radius: 7px;
     font-size: 12px;
@@ -401,27 +337,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     cursor: pointer;
     border: none;
     transition: all 0.15s;
-  }
-  .btn-primary {
+  }#exam-tab-clin .btn-primary{
     background: var(--accent);
     color: #fff;
-  }
-  .btn-primary:hover { background: #3a7de8; }
-  .btn-outline {
+  }#exam-tab-clin .btn-primary:hover{ background: #3a7de8; }#exam-tab-clin .btn-outline{
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text2);
-  }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-success {
+  }#exam-tab-clin .btn-outline:hover{ border-color: var(--accent); color: var(--accent); }#exam-tab-clin .btn-success{
     background: rgba(62,201,126,0.15);
     border: 1px solid rgba(62,201,126,0.3);
     color: var(--success);
-  }
-  .btn-success:hover { background: rgba(62,201,126,0.25); }
-
-  /* ─── Toast ─── */
-  .toast {
+  }#exam-tab-clin .btn-success:hover{ background: rgba(62,201,126,0.25); }#exam-tab-clin /* ─── Toast ─── */
+  #exam-tab-clin .toast{
     position: fixed;
     bottom: 28px;
     right: 28px;
@@ -435,16 +363,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     z-index: 999;
     box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     max-width: 340px;
-  }
-  .toast.show { display: block; animation: slideUp 0.3s ease; }
-  @keyframes slideUp {
+  }#exam-tab-clin .toast.show{ display: block; animation: slideUp 0.3s ease; }#exam-tab-clin @keyframes slideUp{
     from { transform: translateY(20px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
-  }
-
-  /* ─── GDS radio ─── */
-  .gds-options { padding: 2px 12px 10px; display: flex; flex-direction: column; gap: 5px; }
-  .gds-opt {
+  }#exam-tab-clin /* ─── GDS radio ─── */
+  #exam-tab-clin .gds-options{ padding: 2px 12px 10px; display: flex; flex-direction: column; gap: 5px; }#exam-tab-clin .gds-opt{
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 7px;
@@ -456,13 +379,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     color: var(--text2);
     line-height: 1.5;
     transition: all 0.15s;
-  }
-  .gds-opt:hover { background: var(--surface2); color: var(--text); }
-  .gds-opt.selected { background: rgba(79,142,247,0.1); border-color: var(--accent); color: var(--text); }
-  .gds-stage { font-weight: 600; color: var(--accent); display: block; margin-bottom: 2px; }
-
-  /* ─── BPRS sub-score table ─── */
-  .sub-scores {
+  }#exam-tab-clin .gds-opt:hover{ background: var(--surface2); color: var(--text); }#exam-tab-clin .gds-opt.selected{ background: rgba(79,142,247,0.1); border-color: var(--accent); color: var(--text); }#exam-tab-clin .gds-stage{ font-weight: 600; color: var(--accent); display: block; margin-bottom: 2px; }#exam-tab-clin /* ─── BPRS sub-score table ─── */
+  #exam-tab-clin .sub-scores{
     background: var(--surface2);
     border-radius: 8px;
     padding: 14px 18px;
@@ -471,51 +389,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     font-size: 12px;
-  }
-  .sub-item { display: flex; justify-content: space-between; color: var(--text2); }
-  .sub-val { font-weight: 600; color: var(--text); }
-
-  /* ─── PSQI Component display ─── */
-  .psqi-comps {
+  }#exam-tab-clin .sub-item{ display: flex; justify-content: space-between; color: var(--text2); }#exam-tab-clin .sub-val{ font-weight: 600; color: var(--text); }#exam-tab-clin /* ─── PSQI Component display ─── */
+  #exam-tab-clin .psqi-comps{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     margin-top: 12px;
     font-size: 12px;
-  }
-  .psqi-comp { background: var(--surface2); border-radius: 7px; padding: 10px 14px; }
-  .psqi-comp-name { color: var(--text3); margin-bottom: 3px; }
-  .psqi-comp-val { font-size: 18px; font-weight: 700; color: var(--accent); }
-
-  /* scroll smooth */
-  html { scroll-behavior: smooth; }
-
-  @media print {
+  }#exam-tab-clin .psqi-comp{ background: var(--surface2); border-radius: 7px; padding: 10px 14px; }#exam-tab-clin .psqi-comp-name{ color: var(--text3); margin-bottom: 3px; }#exam-tab-clin .psqi-comp-val{ font-size: 18px; font-weight: 700; color: var(--accent); }#exam-tab-clin /* scroll smooth */
+  html{ scroll-behavior: smooth; }#exam-tab-clin @media print{
     @page { size: A4 portrait; margin: 10mm 12mm; }
 
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-    html, body { background: #fff !important; }
+    #exam-tab-clin { background: #fff !important; }
 
-    .sidebar, header, .patient-bar, .score-actions, .toast { display: none !important; }
-    .print-info { display: flex !important; justify-content: space-between; font-size: 11px; color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 8px; }
+    #exam-tab-clin .sidebar, #exam-tab-clin header, #exam-tab-clin .patient-bar, #exam-tab-clin .score-actions, #exam-tab-clin .toast{ display: none !important; }
+    #exam-tab-clin .print-info{ display: flex !important; justify-content: space-between; font-size: 11px; color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 8px; }
 
-    .layout { display: block !important; }
+    #exam-tab-clin .layout { display: block !important; }
 
-    .main {
+    #exam-tab-clin .main{
       padding: 0 !important;
       max-width: 100% !important;
       width: 100% !important;
     }
 
-    .scale-panel { display: none !important; }
-    .scale-panel.active { display: block !important; }
+    #exam-tab-clin .scale-panel{ display: none !important; }
+    #exam-tab-clin .scale-panel.active{ display: block !important; }
 
-    .scale-header { margin-bottom: 6px !important; }
-    .scale-title { font-size: 14px !important; margin-bottom: 2px !important; }
-    .scale-meta { font-size: 10px !important; }
+    #exam-tab-clin .scale-header{ margin-bottom: 6px !important; }
+    #exam-tab-clin .scale-title{ font-size: 14px !important; margin-bottom: 2px !important; }
+    #exam-tab-clin .scale-meta{ font-size: 10px !important; }
 
-    .item-card {
+    #exam-tab-clin .item-card{
       break-inside: avoid !important;
       page-break-inside: avoid !important;
       margin-bottom: 4px !important;
@@ -523,81 +430,111 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       border: 1px solid #c8cfe0 !important;
     }
 
-    .item-header {
+    #exam-tab-clin .item-header{
       padding: 5px 10px 3px !important;
       font-size: 10px !important;
       font-weight: 600 !important;
     }
 
-    .item-num {
+    #exam-tab-clin .item-num{
       width: 16px !important; height: 16px !important;
       line-height: 16px !important; font-size: 9px !important;
     }
 
-    .options { padding: 2px 10px 6px !important; gap: 3px !important; }
-    .opt-btn {
+    #exam-tab-clin .options{ padding: 2px 10px 6px !important; gap: 3px !important; }
+    #exam-tab-clin .opt-btn{
       padding: 3px 8px !important;
       font-size: 9px !important;
       border-radius: 4px !important;
       gap: 5px !important;
     }
-    .opt-score { min-width: 14px !important; height: 14px !important; font-size: 8px !important; }
+    #exam-tab-clin .opt-score{ min-width: 14px !important; height: 14px !important; font-size: 8px !important; }
 
-    .options-row { padding: 2px 10px 6px !important; gap: 3px !important; }
-    .opt-chip { padding: 3px 8px !important; font-size: 9px !important; border-radius: 12px !important; }
+    #exam-tab-clin .options-row{ padding: 2px 10px 6px !important; gap: 3px !important; }
+    #exam-tab-clin .opt-chip{ padding: 3px 8px !important; font-size: 9px !important; border-radius: 12px !important; }
 
-    .item-input { padding: 2px 10px 6px !important; }
-    .num-input { padding: 4px 8px !important; font-size: 11px !important; width: 80px !important; }
+    #exam-tab-clin .item-input{ padding: 2px 10px 6px !important; }
+    #exam-tab-clin .num-input{ padding: 4px 8px !important; font-size: 11px !important; width: 80px !important; }
 
-    .score-footer { margin-top: 8px !important; padding: 10px 14px !important; border-radius: 7px !important; }
-    .score-big { font-size: 26px !important; }
-    .score-interp strong { font-size: 12px !important; }
+    #exam-tab-clin .score-footer{ margin-top: 8px !important; padding: 10px 14px !important; border-radius: 7px !important; }
+    #exam-tab-clin .score-big{ font-size: 26px !important; }
+    #exam-tab-clin .score-interp strong{ font-size: 12px !important; }
 
-    .psqi-comps { gap: 4px !important; margin-top: 6px !important; }
-    .psqi-comp { padding: 5px 8px !important; }
-    .psqi-comp-val { font-size: 13px !important; }
-    .psqi-comp-name { font-size: 9px !important; }
+    #exam-tab-clin .psqi-comps{ gap: 4px !important; margin-top: 6px !important; }
+    #exam-tab-clin .psqi-comp{ padding: 5px 8px !important; }
+    #exam-tab-clin .psqi-comp-val{ font-size: 13px !important; }
+    #exam-tab-clin .psqi-comp-name{ font-size: 9px !important; }
 
-    .sub-scores { padding: 8px 12px !important; gap: 4px !important; font-size: 10px !important; margin-top: 6px !important; }
+    #exam-tab-clin .sub-scores{ padding: 8px 12px !important; gap: 4px !important; font-size: 10px !important; margin-top: 6px !important; }
 
-    .gds-options { padding: 2px 10px 6px !important; gap: 4px !important; }
-    .gds-opt { padding: 5px 10px !important; font-size: 9px !important; line-height: 1.4 !important; }
-    .gds-stage { font-size: 9px !important; }
+    #exam-tab-clin .gds-options{ padding: 2px 10px 6px !important; gap: 4px !important; }
+    #exam-tab-clin .gds-opt{ padding: 5px 10px !important; font-size: 9px !important; line-height: 1.4 !important; }
+    #exam-tab-clin .gds-stage{ font-size: 9px !important; }
   }
+
 
 </style>
 </head>
 <body>
 
-<!-- ══ 잠금 화면 ══ -->
-<div id="lock-screen" style="position:fixed;inset:0;background:#1a3a5c;z-index:99999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px;">
-  <div style="color:white;font-size:1.5rem;font-weight:700;letter-spacing:0.04em;text-align:center;">🏥 원무 관리 시스템</div>
-  <div style="background:white;border-radius:16px;padding:32px 28px;width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
-    <div style="font-size:0.95rem;font-weight:600;color:#1a3a5c;margin-bottom:12px;text-align:center;">🔒 비밀번호를 입력하세요</div>
-    <input type="password" id="lock-pw-input" placeholder="비밀번호"
+<!-- ══ 로그인 화면 ══ -->
+<div id="login-screen" style="position:fixed;inset:0;background:#1a3a5c;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;">
+  <div style="color:white;font-size:1.4rem;font-weight:700;text-align:center;">🏥 한강의원 접수관리</div>
+  <div style="display:flex;gap:12px;margin-bottom:4px;">
+    <button id="login-tab-exam" onclick="selectLoginTab('exam')"
+      style="padding:14px 28px;border-radius:12px;border:2px solid #4ade80;background:#22c55e;color:white;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;">
+      🖥️ 검사탭용
+    </button>
+    <button id="login-tab-recep" onclick="selectLoginTab('recep')"
+      style="padding:14px 28px;border-radius:12px;border:2px solid #60a5fa;background:transparent;color:#60a5fa;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;">
+      🗂️ 접수컴퓨터용
+    </button>
+  </div>
+  <div style="background:white;border-radius:16px;padding:28px;width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+    <div id="login-tab-label" style="font-size:0.9rem;font-weight:700;color:#1a3a5c;margin-bottom:12px;text-align:center;">🖥️ 검사탭용 비밀번호</div>
+    <input type="password" id="login-pw-input" placeholder="비밀번호"
       style="width:100%;padding:14px;border:1.5px solid #d1d5db;border-radius:10px;font-size:1.1rem;text-align:center;margin-bottom:14px;"
-      onkeydown="if(event.key==='Enter') unlockApp()">
-    <div id="lock-err" style="color:#c0392b;font-size:0.82rem;text-align:center;margin-bottom:8px;display:none;">비밀번호가 틀렸습니다.</div>
-    <button onclick="unlockApp()"
+      onkeydown="if(event.key==='Enter') doLogin()">
+    <div id="login-err" style="color:#c0392b;font-size:0.82rem;text-align:center;margin-bottom:8px;display:none;">비밀번호가 틀렸습니다.</div>
+    <button onclick="doLogin()"
       style="width:100%;background:#1a3a5c;color:white;border:none;border-radius:10px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;">
       확인
     </button>
   </div>
 </div>
 
+<!-- ══ 접수조회 비번 모달 (검사탭용) ══ -->
+<div id="search-lock-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:8000;align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:16px;padding:28px;width:280px;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+    <div style="font-size:1rem;font-weight:700;color:#1a3a5c;margin-bottom:12px;text-align:center;">🔒 접수 조회 비밀번호</div>
+    <input type="password" id="search-lock-pw" placeholder="비밀번호"
+      style="width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:1rem;text-align:center;margin-bottom:10px;"
+      onkeydown="if(event.key==='Enter') unlockSearch()">
+    <div id="search-lock-err" style="color:#c0392b;font-size:0.8rem;text-align:center;margin-bottom:8px;display:none;">비밀번호가 틀렸습니다.</div>
+    <div style="display:flex;gap:8px;">
+      <button onclick="document.getElementById('search-lock-modal').style.display='none'"
+        style="flex:1;padding:11px;background:#f3f4f6;color:#374151;border:none;border-radius:8px;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:inherit;">취소</button>
+      <button onclick="unlockSearch()"
+        style="flex:1;padding:11px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:0.9rem;font-weight:700;cursor:pointer;font-family:inherit;">확인</button>
+    </div>
+  </div>
+</div>
+
 <div class="app">
 
-<div class="screen active" id="s-admin">
-  <div class="hdr">정신건강 검사 관리 (일반용)</div>
-  <div class="sub-hdr" style="grid-template-columns:1fr">
-    <span class="act" onclick="switchSubTab('issue',this)">검사 선택</span>
-    <span onclick="switchSubTab('status',this)" style="display:none">완료 현황</span>
-    <span onclick="switchSubTab('daeri',this)" style="display:none">대리 처방</span>
-    <span onclick="switchSubTab('chojin',this)" style="display:none">초진 접수</span>
-    <span onclick="switchSubTab('search',this)" style="display:none">접수 조회</span>
-    <span onclick="switchSubTab('clin',this)" style="display:none">임상가 척도</span>
+<!-- ══════════════════════════════════ -->
+<!-- 검사탭용 화면                       -->
+<!-- ══════════════════════════════════ -->
+<div class="screen" id="s-exam">
+  <div style="background:#16a34a;color:#fff;text-align:center;padding:10px;font-size:15px;font-weight:700;">한강의원 접수관리 <span style="opacity:0.7;font-size:12px;">(검사탭용)</span></div>
+  <div class="sub-hdr" style="grid-template-columns:repeat(5,1fr)">
+    <span class="act" onclick="switchExamTab('issue',this)">검사 선택</span>
+    <span onclick="switchExamTab('status',this)">완료 현황</span>
+    <span onclick="switchExamTab('daeri',this)">대리 처방</span>
+    <span onclick="switchExamTab('chojin',this)">초진 접수</span>
+    <span onclick="examSearchTabClick(this)">접수 조회</span>
   </div>
-  <div class="tab-content act" id="tab-issue" style="font-weight:700;font-size:calc(1em + 4px)">
+  <div class="tab-content act" id="exam-tab-issue" style="font-weight:700;font-size:calc(1em + 4px)">
     <div class="cat-section">
       <div style="font-size:16px;font-weight:700;color:#888;margin-bottom:8px">카테고리 선택</div>
       <div class="cat-grid" id="cat-grid"></div>
@@ -619,10 +556,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <input class="inp name" id="pt-name" placeholder="환자 이름 / 번호 *필수" maxlength="30" />
       </div>
     </div>
-    <div class="issue-btns">
-      <div class="iss-btn lnk" onclick="issue('link')">🔗 링크 발급</div>
+    <!-- 검사탭용: 바로 검사만 -->
+    <div class="issue-btns" style="grid-template-columns:1fr">
       <div class="iss-btn dir" onclick="issue('direct')">▶ 바로 검사</div>
-      <div class="iss-btn qr" onclick="issue('qr')">📷 QR 검사</div>
     </div>
     <div class="link-result" id="link-result">
       <div class="link-box">
@@ -632,7 +568,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div id="qr-wrap" class="qr-wrap" style="display:none"><div id="qr-container"></div></div>
     </div>
   </div>
-  <div class="tab-content" id="tab-status" style="font-weight:700;font-size:calc(1em + 4px)">
+  <div class="tab-content" id="exam-tab-status" style="font-weight:700;font-size:calc(1em + 4px)">
     <div class="status-list">
       <div class="sort-bar">
         <button class="sort-btn act" onclick="sortStatus('time',this)">시간순</button>
@@ -645,7 +581,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
   </div>
   <!-- ══ 대리처방 탭 ══ -->
-  <div class="tab-content" id="tab-daeri">
+  <div class="tab-content" id="exam-tab-daeri">
   <div style="max-width:680px;margin:0 auto;padding:16px 16px 60px">
     <div style="display:inline-block;background:#1a3a5c;color:white;font-size:0.78rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:0.08em;margin-bottom:20px">처방전 대리수령 신청서</div>
 
@@ -769,7 +705,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 
   <!-- ══ 초진접수 탭 ══ -->
-  <div class="tab-content" id="tab-chojin">
+  <div class="tab-content" id="exam-tab-chojin">
   <div style="max-width:680px;margin:0 auto;padding:16px 16px 60px">
     <div style="display:inline-block;background:#1a3a5c;color:white;font-size:0.78rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:0.08em;margin-bottom:20px">초진 접수 양식</div>
 
@@ -908,7 +844,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 
   <!-- ══ 접수 조회 탭 ══ -->
-  <div class="tab-content" id="tab-search" style="font-weight:700">
+  <div class="tab-content" id="exam-tab-search" style="font-weight:700">
   <div style="max-width:680px;margin:0 auto;padding:16px">
 
     <!-- 검색 바 -->
@@ -921,7 +857,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </select>
         <input type="text" id="search-chart" placeholder="차트번호" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:110px;">
         <input type="text" id="search-name" placeholder="이름" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:100px;">
-        <button onclick="doSearch()" style="padding:9px 18px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:17px;font-weight:700;cursor:pointer;">🔍 조회</button>
+        <button onclick="doSearch2()" style="padding:9px 18px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:17px;font-weight:700;cursor:pointer;">🔍 조회</button>
       </div>
     </div>
 
@@ -929,78 +865,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
   </div>
 
-  <!-- 상세 조회 모달 -->
-  <div id="detail-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;overflow-y:auto;">
-    <div style="background:#fff;max-width:480px;margin:60px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);">
-      <div style="background:#1a3a5c;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;">
-        <span id="modal-title" style="font-size:20px;font-weight:700;"></span>
-        <button onclick="closeModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
-      </div>
-      <div id="modal-body" style="padding:16px 20px;overflow-y:auto;max-height:65vh;"></div>
-      <div style="padding:12px 20px;border-top:1px solid #eee;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
-        <button onclick="openDeleteModal()" style="background:#dc2626;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;cursor:pointer;font-weight:700;margin-right:auto;">🗑️ 삭제</button>
-        <button onclick="openEditModal()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:16px;cursor:pointer;font-weight:700;">✏️ 수정</button>
-        <button onclick="printModalPDF()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:16px;cursor:pointer;font-weight:700;">🖨️ PDF</button>
-        <button onclick="closeModal()" style="background:#6b7280;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;font-weight:700;cursor:pointer;">닫기</button>
-      </div>
-    </div>
-  </div>
 
-  <!-- 수정 모달 -->
-  <div id="edit-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9100;overflow-y:auto;">
-    <div style="background:#fff;max-width:400px;margin:80px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
-      <div style="background:#d97706;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:16px;font-weight:bold;">✏️ 데이터 수정</span>
-        <button onclick="closeEditModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px;margin-bottom:14px;font-size:12px;color:#856404;">
-          ⚠️ 잘못 입력된 이름 또는 차트번호만 수정할 수 있습니다.
-        </div>
-        <div id="edit-pw-section">
-          <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">🔒 관리자 비밀번호</label>
-          <input type="password" id="edit-pw-input" placeholder="비밀번호 입력"
-            style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
-            onkeydown="if(event.key==='Enter') verifyEditPw()">
-          <button onclick="verifyEditPw()" style="width:100%;background:#1a3a5c;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">확인</button>
-        </div>
-        <div id="edit-fields-section" style="display:none;">
-          <div style="margin-bottom:12px;">
-            <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">이름 <span id="edit-name-label" style="color:#9ca3af;font-weight:400;"></span></label>
-            <input type="text" id="edit-name-input" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
-          </div>
-          <div style="margin-bottom:16px;">
-            <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">차트번호 <span id="edit-chart-label" style="color:#9ca3af;font-weight:400;"></span></label>
-            <input type="text" id="edit-chart-input" inputmode="numeric" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
-          </div>
-          <button onclick="saveEdit()" style="width:100%;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">💾 저장</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 삭제 모달 -->
-  <div id="delete-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9200;overflow-y:auto;">
-    <div style="background:#fff;max-width:380px;margin:100px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
-      <div style="background:#dc2626;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:16px;font-weight:bold;">🗑️ 데이터 삭제</span>
-        <button onclick="closeDeleteModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
-      </div>
-      <div style="padding:18px 20px;">
-        <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12px;color:#991b1b;line-height:1.6;">
-          ⚠️ <strong>삭제된 데이터는 복구할 수 없습니다.</strong>
-        </div>
-        <div id="delete-target-info" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px;font-size:12px;color:#374151;margin-bottom:12px;font-weight:600;"></div>
-        <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">🔒 관리자 비밀번호</label>
-        <input type="password" id="delete-pw-input" placeholder="비밀번호 입력"
-          style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
-          onkeydown="if(event.key==='Enter') confirmDelete()">
-        <button onclick="confirmDelete()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;">🗑️ 삭제 확인</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="tab-content" id="tab-clin" style="font-weight:700;font-size:calc(1em + 3px)">
+  <div class="tab-content" id="exam-tab-clin" style="font-weight:700;font-size:calc(1em + 3px)">
     <div id="clin-lock" style="display:none;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;gap:14px;padding:2rem">
       <div style="font-size:36px">🔐</div>
       <div style="font-size:18px;font-weight:600">임상가 척도</div>
@@ -1061,7 +927,179 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
     </div>
   </div>
-</div>
+
+</div><!-- /s-exam -->
+
+<!-- 상세 조회 모달 -->
+<div id="detail-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;overflow-y:auto;">
+    <div style="background:#fff;max-width:480px;margin:60px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);">
+      <div style="background:#1a3a5c;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;">
+        <span id="modal-title" style="font-size:20px;font-weight:700;"></span>
+        <button onclick="closeModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+      </div>
+      <div id="modal-body" style="padding:16px 20px;overflow-y:auto;max-height:65vh;"></div>
+      <div style="padding:12px 20px;border-top:1px solid #eee;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
+        <button onclick="openDeleteModal()" style="background:#dc2626;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;cursor:pointer;font-weight:700;margin-right:auto;">🗑️ 삭제</button>
+        <button onclick="openEditModal()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:16px;cursor:pointer;font-weight:700;">✏️ 수정</button>
+        <button onclick="printModalPDF()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:16px;cursor:pointer;font-weight:700;">🖨️ PDF</button>
+        <button onclick="closeModal()" style="background:#6b7280;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:16px;font-weight:700;cursor:pointer;">닫기</button>
+      </div>
+    </div>
+  </div>
+
+<!-- 수정 모달 -->
+<div id="edit-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9100;overflow-y:auto;">
+    <div style="background:#fff;max-width:400px;margin:80px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+      <div style="background:#d97706;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:16px;font-weight:bold;">✏️ 데이터 수정</span>
+        <button onclick="closeEditModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+      </div>
+      <div style="padding:18px 20px;">
+        <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px;margin-bottom:14px;font-size:12px;color:#856404;">
+          ⚠️ 잘못 입력된 이름 또는 차트번호만 수정할 수 있습니다.
+        </div>
+        <div id="edit-pw-section">
+          <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">🔒 관리자 비밀번호</label>
+          <input type="password" id="edit-pw-input" placeholder="비밀번호 입력"
+            style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
+            onkeydown="if(event.key==='Enter') verifyEditPw()">
+          <button onclick="verifyEditPw()" style="width:100%;background:#1a3a5c;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">확인</button>
+        </div>
+        <div id="edit-fields-section" style="display:none;">
+          <div style="margin-bottom:12px;">
+            <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">이름 <span id="edit-name-label" style="color:#9ca3af;font-weight:400;"></span></label>
+            <input type="text" id="edit-name-input" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
+          </div>
+          <div style="margin-bottom:16px;">
+            <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">차트번호 <span id="edit-chart-label" style="color:#9ca3af;font-weight:400;"></span></label>
+            <input type="text" id="edit-chart-input" inputmode="numeric" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
+          </div>
+          <button onclick="saveEdit()" style="width:100%;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">💾 저장</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- 삭제 모달 -->
+<div id="delete-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9200;overflow-y:auto;">
+    <div style="background:#fff;max-width:380px;margin:100px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
+      <div style="background:#dc2626;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:16px;font-weight:bold;">🗑️ 데이터 삭제</span>
+        <button onclick="closeDeleteModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+      </div>
+      <div style="padding:18px 20px;">
+        <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12px;color:#991b1b;line-height:1.6;">
+          ⚠️ <strong>삭제된 데이터는 복구할 수 없습니다.</strong>
+        </div>
+        <div id="delete-target-info" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px;font-size:12px;color:#374151;margin-bottom:12px;font-weight:600;"></div>
+        <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">🔒 관리자 비밀번호</label>
+        <input type="password" id="delete-pw-input" placeholder="비밀번호 입력"
+          style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
+          onkeydown="if(event.key==='Enter') confirmDelete()">
+        <button onclick="confirmDelete()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;">🗑️ 삭제 확인</button>
+      </div>
+    </div>
+  </div>
+
+
+<!-- ══════════════════════════════════ -->
+<!-- 접수컴퓨터용 화면                   -->
+<!-- ══════════════════════════════════ -->
+<div class="screen" id="s-recep">
+  <div style="background:#1d4ed8;color:#fff;text-align:center;padding:10px;font-size:15px;font-weight:700;">한강의원 접수관리 <span style="opacity:0.7;font-size:12px;">(접수컴퓨터용)</span></div>
+  <div class="sub-hdr" style="grid-template-columns:repeat(5,1fr)">
+    <span class="act" onclick="switchRecepTab('remote',this)">원격검사</span>
+    <span onclick="switchRecepTab('status2',this)">완료 현황</span>
+    <span onclick="switchRecepTab('search2',this)">접수 조회</span>
+    <span onclick="switchRecepTab('appt',this);loadAppts()">예약</span>
+    <span onclick="switchRecepTab('phone',this)">전화번호변경</span>
+  </div>
+
+  <!-- 원격검사 탭 (링크 발급) -->
+  <div class="tab-content act" id="recep-tab-remote" style="font-weight:700;font-size:calc(1em + 4px)">
+    <div style="padding:2rem;text-align:center;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:20px;color:#1a3a5c;">원격 검사 링크 연결</div>
+      <a href="https://psychibae-lang.github.io/clinic/" target="_blank"
+        style="display:inline-block;padding:18px 36px;background:#1d4ed8;color:white;border-radius:14px;font-size:20px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(29,78,216,0.3);">
+        🔗 원격 검사 페이지 열기
+      </a>
+      <div style="margin-top:14px;font-size:13px;color:#888;">클릭하면 새 탭에서 열립니다</div>
+    </div>
+  </div>
+
+  <!-- 완료 현황 탭 (접수컴퓨터용) -->
+  <div class="tab-content" id="recep-tab-status2" style="font-weight:700;font-size:calc(1em + 4px)">
+    <div class="status-list">
+      <div class="sort-bar">
+        <button class="sort-btn act" onclick="sortStatus('time',this)">시간순</button>
+        <button class="sort-btn" onclick="sortStatus('name',this)">가나다순</button>
+        <button class="sort-btn" onclick="sortStatus('done',this)">완료</button>
+        <button class="sort-btn" onclick="sortStatus('wait',this)">미완료</button>
+        <button class="btn sm" onclick="loadStatus()" style="margin-left:auto">새로고침</button>
+      </div>
+      <div id="status-list-body2"><div class="empty"><div class="spinner"></div></div></div>
+    </div>
+  </div>
+
+  <!-- 접수 조회 탭 (접수컴퓨터용) — 비번 없이 바로 접근 -->
+  <div class="tab-content" id="recep-tab-search2" style="font-weight:700">
+  <div style="max-width:680px;margin:0 auto;padding:16px">
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <select id="search-type2" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;background:white;">
+          <option value="all">전체</option>
+          <option value="chojin">초진</option>
+          <option value="daeri">대리</option>
+        </select>
+        <input type="text" id="search-chart2" placeholder="차트번호" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:110px;">
+        <input type="text" id="search-name2" placeholder="이름" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:100px;">
+        <button onclick="doSearch2()" style="padding:9px 18px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:17px;font-weight:700;cursor:pointer;">🔍 조회</button>
+      </div>
+    </div>
+    <div id="search-results2" style="font-size:17px;font-weight:700;color:#9ca3af;text-align:center;padding:20px;">조회 버튼을 눌러주세요.</div>
+  </div>
+  </div>
+
+  <!-- 전화번호변경 탭 -->
+  <div class="tab-content" id="recep-tab-phone" style="font-weight:700">
+    <div style="max-width:480px;margin:0 auto;padding:24px 16px;">
+      <div style="font-size:18px;font-weight:700;color:#1a3a5c;margin-bottom:20px;">📞 전화번호 변경</div>
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">차트번호</label>
+          <input type="text" id="phone-chart" placeholder="차트번호 입력" inputmode="numeric"
+            style="width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:16px;font-weight:700;">
+        </div>
+        <div style="margin-bottom:20px;">
+          <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">새 전화번호</label>
+          <input type="tel" id="phone-new" placeholder="01012345678" inputmode="numeric"
+            style="width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:16px;font-weight:700;">
+        </div>
+        <button onclick="changePhone()"
+          style="width:100%;padding:14px;background:#1d4ed8;color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;">
+          ✅ 전화번호 변경
+        </button>
+        <div id="phone-result" style="margin-top:14px;font-size:15px;font-weight:700;text-align:center;min-height:24px;"></div>
+      </div>
+    </div>
+  </div>
+
+<!-- ══ 예약 탭 ══ -->
+  <div class="tab-content act" id="recep-tab-appt" style="font-weight:700;font-size:calc(1em + 4px)">
+    <div style="padding:10px 14px;display:flex;justify-content:space-between;align-items:center;background:#f7f8fc;border-bottom:1px solid #e0e4ef;">
+      <span style="font-size:14px;font-weight:700;color:#333;">📅 예약 현황 (오늘~8일)</span>
+      <button id="apptLoadBtn" onclick="loadAppts()" style="font-size:12px;padding:5px 12px;background:#4f8ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;">🔄 새로고침</button>
+    </div>
+    <div style="padding:8px 14px;background:#f0f7ff;border-bottom:1px solid #e0e4ef;display:flex;flex-wrap:wrap;gap:6px;">
+      <span style="font-size:11px;color:#666;font-weight:600;">진료이유:</span>
+      <span style="font-size:11px;color:#555;">1.우울</span><span style="font-size:11px;color:#555;">2.불면</span>
+      <span style="font-size:11px;color:#555;">3.불안</span><span style="font-size:11px;color:#555;">4.강박</span>
+      <span style="font-size:11px;color:#555;">5.트라우마</span><span style="font-size:11px;color:#555;">6.ADHD</span>
+      <span style="font-size:11px;color:#555;">7.틱</span><span style="font-size:11px;color:#555;">8.환청환시</span>
+    </div>
+    <div id="apptContainer" style="padding:10px 10px;"></div>
+  </div>
+</div><!-- /s-recep -->
 
 <div class="screen" id="s-q">
   <div class="q-hdr">
@@ -1092,9 +1130,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-</div>
+</div><!-- /app -->
 <div class="toast" id="toast"></div>
 <script>
+// ── 전역 변수 (onclick보다 먼저 선언) ──
+const PW_EXAM        = '0319871248';
+const PW_RECEP       = 'hanriver0325';
+const PW_SEARCH_EXAM = 'hanriver0325';
+let currentLoginTab  = 'exam';
+let searchUnlocked   = false;
+
 const SCALES = {
   asrs:{no:1,title:'AD',name:'ASRS',cat:'other',tag:'ADHD',
     inst:'지난 6개월 동안 당신이 어떻게 느끼고 행동하였는지를 가장 잘 나타내주는 칸에 표시하세요.',
@@ -1257,12 +1302,21 @@ let statusSort='time';
 
 function init(){
   const hash=location.hash;
-  if(hash.startsWith('#s-')){loadPatientSession(hash.slice(3));}
-  else{showScreen('s-admin');renderCatGrid();renderScaleGrid();loadStatus();}
+  if(hash.startsWith('#s-')){
+    // 환자 검사 링크 직접 접근 - 로그인 없이 검사 진행
+    document.getElementById('login-screen').style.display='none';
+    loadPatientSession(hash.slice(3));
+  }
+  // 그 외: 로그인 화면이 기본으로 표시됨 (HTML에서 display:flex 설정)
+  renderCatGrid();
+  renderScaleGrid();
 }
 window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#s-'))loadPatientSession(location.hash.slice(3));});
 
-function switchSubTab(tab,el){
+function switchSubTab(tab,el){ // 구버전 호환 - examTab으로 위임
+  switchExamTab(tab,el);
+}
+function _switchSubTab_orig(tab,el){
   document.querySelectorAll('.sub-hdr span').forEach(s=>s.classList.remove('act'));
   el.classList.add('act');
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('act'));
@@ -1442,481 +1496,7 @@ function renderQ(){
   const isLast=q===total-1&&st.scaleIdx===st.scaleIds.length-1;
   const isScaleLast=q===total-1;
   document.getElementById('q-body').innerHTML=`
-    <style id="q-font-style">
-/* === 임상가 척도 CSS === */
-
-  /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap'); */
-
-  :root {
-    --bg: #f0f2f7;
-    --surface: #ffffff;
-    --surface2: #f5f6fa;
-    --border: #d0d6e8;
-    --accent: #2563eb;
-    --accent2: #7c6af5;
-    --success: #16a34a;
-    --warn: #d97706;
-    --danger: #dc2626;
-    --text: #1a1f36;
-    --text2: #4a5278;
-    --text3: #8a94b0;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
-
-  /* ─── Header ─── */
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    height: 60px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  header h1 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: -0.3px;
-  }
-  .header-sub { color: var(--text3); font-size: 12px; }
-  .header-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
-
-  /* ─── Patient bar ─── */
-  .patient-bar {
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border);
-    padding: 7px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .patient-bar label { font-size: 11px; color: var(--text2); margin-right: 4px; }
-  .patient-bar input {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-family: inherit;
-    width: 120px;
-  }
-  .patient-bar input:focus { outline: none; border-color: var(--accent); }
-
-  /* ─── Layout ─── */
-  .layout {
-    display: flex;
-    min-height: calc(100vh - 60px);
-  }
-
-  /* ─── Sidebar ─── */
-  .sidebar {
-    width: 200px;
-    flex-shrink: 0;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    padding: 16px 0;
-    position: sticky;
-    top: 60px;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
-  }
-  .sidebar-title {
-    padding: 0 16px 12px;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text3);
-    font-weight: 500;
-  }
-  .nav-item {
-    padding: 7px 14px;
-    cursor: pointer;
-    font-size: 12px;
-    color: var(--text2);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.15s;
-    border-left: 3px solid transparent;
-  }
-  .nav-item:hover { background: var(--surface2); color: var(--text); }
-  .nav-item.active {
-    background: rgba(79,142,247,0.1);
-    color: var(--accent);
-    border-left-color: var(--accent);
-    font-weight: 500;
-  }
-  .nav-badge {
-    margin-left: auto;
-    font-size: 10px;
-    background: var(--surface2);
-    padding: 2px 6px;
-    border-radius: 10px;
-    color: var(--text3);
-  }
-  .nav-item.done .nav-badge { background: rgba(62,201,126,0.15); color: var(--success); }
-
-  /* ─── Main ─── */
-  .main {
-    flex: 1;
-    padding: 16px 20px;
-    max-width: 860px;
-  }
-
-  /* ─── Scale panel ─── */
-  .scale-panel { display: none; }
-  .scale-panel.active { display: block; }
-
-  .scale-header {
-    margin-bottom: 12px;
-  }
-  .scale-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 3px;
-  }
-  .scale-meta { font-size: 11px; color: var(--text3); }
-
-  /* ─── Items ─── */
-  .item-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    margin-bottom: 6px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .item-card:hover { border-color: #3a4570; }
-  .item-card.scored { border-color: rgba(79,142,247,0.4); }
-
-  .item-header {
-    padding: 8px 14px 5px;
-    font-size: 12.5px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .item-num {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: var(--surface2);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 20px;
-    font-size: 10px;
-    color: var(--text3);
-    margin-right: 6px;
-  }
-  .item-card.scored .item-num { background: rgba(79,142,247,0.2); color: var(--accent); }
-
-  /* ─── Option buttons ─── */
-  .options {
-    padding: 2px 12px 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .opt-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text2);
-    padding: 5px 10px;
-    border-radius: 6px;
-    text-align: left;
-    cursor: pointer;
-    font-size: 11.5px;
-    font-family: inherit;
-    line-height: 1.4;
-    transition: all 0.15s;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .opt-btn:hover { background: var(--surface2); border-color: #3a4570; color: var(--text); }
-  .opt-btn.selected {
-    background: rgba(79,142,247,0.12);
-    border-color: var(--accent);
-    color: var(--text);
-  }
-  .opt-score {
-    min-width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--surface2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 600;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .opt-btn.selected .opt-score { background: var(--accent); color: #fff; }
-
-  /* ─── BPRS wide options ─── */
-  .options-row {
-    padding: 2px 12px 8px;
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-  }
-  .opt-chip {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text2);
-    padding: 5px 10px;
-    border-radius: 16px;
-    cursor: pointer;
-    font-size: 10.5px;
-    font-family: inherit;
-    transition: all 0.15s;
-  }
-  .opt-chip:hover { border-color: #3a4570; color: var(--text); }
-  .opt-chip.selected {
-    background: rgba(79,142,247,0.18);
-    border-color: var(--accent);
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* ─── Text input items (PSQI, WHODAS days) ─── */
-  /* APPQ 전용 — 8개 선택지 */
-  .scale-appq .opt-chip { font-size: 9.5px; padding: 4px 7px; }
-  .item-input {
-    padding: 4px 18px 14px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .num-input {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 8px 14px;
-    border-radius: 7px;
-    font-size: 14px;
-    font-family: inherit;
-    width: 100px;
-    text-align: center;
-  }
-  .num-input:focus { outline: none; border-color: var(--accent); }
-
-  /* ─── Score footer ─── */
-  .score-footer {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-top: 14px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .score-big {
-    font-size: 32px;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .score-interp {
-    font-size: 13px;
-    color: var(--text2);
-  }
-  .score-interp strong { color: var(--text); font-size: 14px; }
-  .score-actions { margin-left: auto; display: flex; gap: 8px; }
-
-  /* ─── Buttons ─── */
-  .btn {
-    padding: 7px 14px;
-    border-radius: 7px;
-    font-size: 12px;
-    font-family: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    transition: all 0.15s;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-  }
-  .btn-primary:hover { background: #3a7de8; }
-  .btn-outline {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text2);
-  }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-success {
-    background: rgba(62,201,126,0.15);
-    border: 1px solid rgba(62,201,126,0.3);
-    color: var(--success);
-  }
-  .btn-success:hover { background: rgba(62,201,126,0.25); }
-
-  /* ─── Toast ─── */
-  .toast {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 20px;
-    font-size: 13px;
-    color: var(--text);
-    display: none;
-    z-index: 999;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    max-width: 340px;
-  }
-  .toast.show { display: block; animation: slideUp 0.3s ease; }
-  @keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
-  /* ─── GDS radio ─── */
-  .gds-options { padding: 2px 12px 10px; display: flex; flex-direction: column; gap: 5px; }
-  .gds-opt {
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 7px 12px;
-    cursor: pointer;
-    text-align: left;
-    font-size: 11.5px;
-    font-family: inherit;
-    color: var(--text2);
-    line-height: 1.5;
-    transition: all 0.15s;
-  }
-  .gds-opt:hover { background: var(--surface2); color: var(--text); }
-  .gds-opt.selected { background: rgba(79,142,247,0.1); border-color: var(--accent); color: var(--text); }
-  .gds-stage { font-weight: 600; color: var(--accent); display: block; margin-bottom: 2px; }
-
-  /* ─── BPRS sub-score table ─── */
-  .sub-scores {
-    background: var(--surface2);
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin-top: 12px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    font-size: 12px;
-  }
-  .sub-item { display: flex; justify-content: space-between; color: var(--text2); }
-  .sub-val { font-weight: 600; color: var(--text); }
-
-  /* ─── PSQI Component display ─── */
-  .psqi-comps {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-top: 12px;
-    font-size: 12px;
-  }
-  .psqi-comp { background: var(--surface2); border-radius: 7px; padding: 10px 14px; }
-  .psqi-comp-name { color: var(--text3); margin-bottom: 3px; }
-  .psqi-comp-val { font-size: 18px; font-weight: 700; color: var(--accent); }
-
-  /* scroll smooth */
-  html { scroll-behavior: smooth; }
-
-  @media print {
-    @page { size: A4 portrait; margin: 10mm 12mm; }
-
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-
-    html, body { background: #fff !important; }
-
-    .sidebar, header, .patient-bar, .score-actions, .toast { display: none !important; }
-    .print-info { display: flex !important; justify-content: space-between; font-size: 11px; color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 8px; }
-
-    .layout { display: block !important; }
-
-    .main {
-      padding: 0 !important;
-      max-width: 100% !important;
-      width: 100% !important;
-    }
-
-    .scale-panel { display: none !important; }
-    .scale-panel.active { display: block !important; }
-
-    .scale-header { margin-bottom: 6px !important; }
-    .scale-title { font-size: 14px !important; margin-bottom: 2px !important; }
-    .scale-meta { font-size: 10px !important; }
-
-    .item-card {
-      break-inside: avoid !important;
-      page-break-inside: avoid !important;
-      margin-bottom: 4px !important;
-      border-radius: 5px !important;
-      border: 1px solid #c8cfe0 !important;
-    }
-
-    .item-header {
-      padding: 5px 10px 3px !important;
-      font-size: 10px !important;
-      font-weight: 600 !important;
-    }
-
-    .item-num {
-      width: 16px !important; height: 16px !important;
-      line-height: 16px !important; font-size: 9px !important;
-    }
-
-    .options { padding: 2px 10px 6px !important; gap: 3px !important; }
-    .opt-btn {
-      padding: 3px 8px !important;
-      font-size: 9px !important;
-      border-radius: 4px !important;
-      gap: 5px !important;
-    }
-    .opt-score { min-width: 14px !important; height: 14px !important; font-size: 8px !important; }
-
-    .options-row { padding: 2px 10px 6px !important; gap: 3px !important; }
-    .opt-chip { padding: 3px 8px !important; font-size: 9px !important; border-radius: 12px !important; }
-
-    .item-input { padding: 2px 10px 6px !important; }
-    .num-input { padding: 4px 8px !important; font-size: 11px !important; width: 80px !important; }
-
-    .score-footer { margin-top: 8px !important; padding: 10px 14px !important; border-radius: 7px !important; }
-    .score-big { font-size: 26px !important; }
-    .score-interp strong { font-size: 12px !important; }
-
-    .psqi-comps { gap: 4px !important; margin-top: 6px !important; }
-    .psqi-comp { padding: 5px 8px !important; }
-    .psqi-comp-val { font-size: 13px !important; }
-    .psqi-comp-name { font-size: 9px !important; }
-
-    .sub-scores { padding: 8px 12px !important; gap: 4px !important; font-size: 10px !important; margin-top: 6px !important; }
-
-    .gds-options { padding: 2px 10px 6px !important; gap: 4px !important; }
-    .gds-opt { padding: 5px 10px !important; font-size: 9px !important; line-height: 1.4 !important; }
-    .gds-stage { font-size: 9px !important; }
-  }
-
-</style>
+    
     <div class="inst">${sc.inst}</div>
     <div class="q-num">문항 ${q+1} / ${total}</div>
     <div class="q-txt">${sc.qs[q]}</div>
@@ -1949,7 +1529,8 @@ function changeFontSize(dir){
 }
 function applyFontSize(){
   const scale=fontScales[fontIdx];
-  const style=document.getElementById('q-font-style');
+  let style=document.getElementById('q-font-style');
+  if(!style){style=document.createElement('style');style.id='q-font-style';document.head.appendChild(style);}
   const css=`
     .q-txt{font-size:${Math.round(baseFontSizes.q*scale)}px !important}
     .opt{font-size:${Math.round(baseFontSizes.opt*scale)}px !important; padding:${Math.round(13*scale)}px 16px !important}
@@ -2050,7 +1631,7 @@ function getSevCls(i){
   return'sev-s';
 }
 
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function copyText(t){navigator.clipboard.writeText(t).then(()=>toast('복사되었습니다!'));}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 function p2(n){return String(n).padStart(2,'0');}
@@ -3302,9 +2883,194 @@ function cj2ResetForm(){
 }
 
 // ══ 잠금 해제 ══════════════════════════════════════════
-function unlockApp() {
-  document.getElementById('lock-screen').style.display = 'none';
+// ── 로그인 관련 ──────────────────────────────
+
+function selectLoginTab(tab) {
+  currentLoginTab = tab;
+  const examBtn  = document.getElementById('login-tab-exam');
+  const recepBtn = document.getElementById('login-tab-recep');
+  const label    = document.getElementById('login-tab-label');
+  document.getElementById('login-pw-input').value = '';
+  document.getElementById('login-err').style.display = 'none';
+  if (tab === 'exam') {
+    examBtn.style.background  = '#22c55e';
+    examBtn.style.color       = 'white';
+    recepBtn.style.background = 'transparent';
+    recepBtn.style.color      = '#60a5fa';
+    label.textContent = '🖥️ 검사탭용 비밀번호';
+  } else {
+    recepBtn.style.background = '#1d4ed8';
+    recepBtn.style.color      = 'white';
+    examBtn.style.background  = 'transparent';
+    examBtn.style.color       = '#4ade80';
+    label.textContent = '🗂️ 접수컴퓨터용 비밀번호';
+  }
 }
+
+function doLogin() {
+  const pw  = document.getElementById('login-pw-input').value;
+  const err = document.getElementById('login-err');
+  if (currentLoginTab === 'exam') {
+    if (pw === PW_EXAM) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('s-exam').classList.add('active');
+      renderCatGrid(); renderScaleGrid('all'); loadStatus();
+    } else { err.style.display = 'block'; }
+  } else {
+    if (pw === PW_RECEP) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('s-recep').classList.add('active');
+      loadAppts();
+    } else { err.style.display = 'block'; }
+  }
+}
+
+function examSearchTabClick(el) {
+  searchUnlocked = false;
+  document.getElementById('search-lock-pw').value = '';
+  document.getElementById('search-lock-err').style.display = 'none';
+  document.getElementById('search-lock-modal').style.display = 'flex';
+  window._pendingSearchTabEl = el;
+}
+
+function unlockSearch() {
+  const pw  = document.getElementById('search-lock-pw').value;
+  const err = document.getElementById('search-lock-err');
+  if (pw === PW_SEARCH_EXAM) {
+    searchUnlocked = true;
+    document.getElementById('search-lock-modal').style.display = 'none';
+    document.getElementById('search-lock-pw').value = '';
+    err.style.display = 'none';
+    switchExamTab('search', window._pendingSearchTabEl);
+  } else {
+    err.style.display = 'block';
+  }
+}
+
+function switchExamTab(tab, el) {
+  document.querySelectorAll('#s-exam .tab-content').forEach(d => d.classList.remove('act'));
+  document.querySelectorAll('#s-exam .sub-hdr span').forEach(s => s.classList.remove('act'));
+  const t = document.getElementById('exam-tab-' + tab);
+  if (t) t.classList.add('act');
+  if (el) el.classList.add('act');
+  if (tab === 'status') loadStatus();
+  if (tab === 'daeri') setTimeout(() => { if(typeof dr2InitCanvas==='function') dr2InitCanvas(); }, 200);
+  if (tab === 'chojin') setTimeout(() => { if(typeof cj2InitCanvas==='function') cj2InitCanvas(); }, 200);
+  if (tab === 'search') { if(typeof loadSearchTab==='function') loadSearchTab(); }
+}
+
+function switchRecepTab(tab, el) {
+  document.querySelectorAll('#s-recep .tab-content').forEach(d => d.classList.remove('act'));
+  document.querySelectorAll('#s-recep .sub-hdr span').forEach(s => s.classList.remove('act'));
+  const t = document.getElementById('recep-tab-' + tab);
+  if (t) t.classList.add('act');
+  if (el) el.classList.add('act');
+  if (tab === 'status2') loadStatus2();
+}
+
+// 접수컴퓨터용 완료현황 - sb 클라이언트 사용, status-list-body2에 렌더
+async function loadStatus2() {
+  const body = document.getElementById('status-list-body2');
+  if (!body) return;
+  body.innerHTML = '<div class="empty"><div class="spinner"></div></div>';
+  try {
+    const {data:sessions} = await sb.from('sessions').select('*').order('created_at',{ascending:false});
+    if (!sessions || !sessions.length) { body.innerHTML = '<div class="empty">검사 없음</div>'; return; }
+    const now = Date.now();
+    const filtered = sessions.filter(s => {
+      if (s.status === '완료') return true;
+      return (now - new Date(s.created_at).getTime()) / 86400000 <= 7;
+    });
+    if (!filtered.length) { body.innerHTML = '<div class="empty">검사 없음</div>'; return; }
+    body.innerHTML = filtered.map(s => {
+      const dt = new Date(s.created_at);
+      const ds = `${String(dt.getFullYear()).slice(2)}${p2(dt.getMonth()+1)}${p2(dt.getDate())} ${p2(dt.getHours())}:${p2(dt.getMinutes())}`;
+      return `<div class="status-card">
+        <div class="status-top">
+          <div><div class="status-name">${s.patient_name||''} <span style="font-size:15px;color:#aaa;font-weight:600">${s.title||''}</span></div>
+          <div class="status-date">${ds}</div></div>
+          <span class="badge ${s.status==='완료'?'b-done':'b-wait'}">${s.status}</span>
+        </div>
+        <div class="scale-tags">${(s.scales||[]).map(id=>{const m=SCALES[id];return m?`<span class="sc-tag ${TAG_CLS[m.cat]||'tag-other'}">${m.name}</span>`:''}).join('')}</div>
+      </div>`;
+    }).join('');
+  } catch(e) { body.innerHTML = '<div class="empty">불러오기 실패</div>'; }
+}
+
+// 접수컴퓨터용 접수조회
+async function doSearch2() {
+  const type  = document.getElementById('search-type2').value;
+  const chart = document.getElementById('search-chart2').value.trim();
+  const name  = document.getElementById('search-name2').value.trim();
+  const resEl = document.getElementById('search-results2');
+  resEl.innerHTML = '<div class="empty"><div class="spinner"></div></div>';
+  const tblList = type === 'chojin' ? ['chojin'] : type === 'daeri' ? ['daeri'] : ['chojin','daeri'];
+  let rows = [];
+  for (const tbl of tblList) {
+    let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
+    if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
+    if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
+    try {
+      const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
+      const d = await r.json();
+      if (Array.isArray(d)) rows = rows.concat(d.map(x => ({...x, _tbl: tbl})));
+    } catch(e) {}
+  }
+  rows.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  if (!rows.length) { resEl.innerHTML = '<div class="empty">결과 없음</div>'; return; }
+  resEl.innerHTML = rows.map(row => {
+    const isCj = row._tbl === 'chojin';
+    const nm   = isCj ? (row.name||'-') : (row.visitor_name||'-');
+    const ch   = row.chart_number || row.chart || '-';
+    const dt   = new Date(row.created_at).toLocaleString('ko-KR');
+    const badge = isCj
+      ? `<span style="background:#dbeafe;color:#1d4ed8;font-size:15px;padding:2px 8px;border-radius:10px;font-weight:700;">초진</span>`
+      : `<span style="background:#d1fae5;color:#065f46;font-size:15px;padding:2px 8px;border-radius:10px;font-weight:700;">대리</span>`;
+    return `<div onclick="openDetail('${row.id}','${row._tbl}')"
+      style="background:white;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:border-color 0.15s;"
+      onmouseover="this.style.borderColor='#1a3a5c'" onmouseout="this.style.borderColor='#e5e7eb'">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        ${badge}
+        <span style="font-size:18px;font-weight:700;">${nm}</span>
+        <span style="color:#9ca3af;font-size:16px;font-weight:700;margin-left:4px;">차트 ${ch}</span>
+      </div>
+      <div style="font-size:15px;font-weight:700;color:#9ca3af;">${dt}</div>
+    </div>`;
+  }).join('');
+}
+
+// 전화번호 변경
+async function changePhone() {
+  const chart  = document.getElementById('phone-chart').value.trim();
+  const phone  = document.getElementById('phone-new').value.trim();
+  const resEl  = document.getElementById('phone-result');
+  if (!chart || !phone) { resEl.textContent = '⚠️ 차트번호와 전화번호를 모두 입력하세요.'; resEl.style.color='#c0392b'; return; }
+  resEl.textContent = '처리 중...'; resEl.style.color = '#888';
+  const tables = ['chojin', 'daeri'];
+  let updated = 0;
+  for (const tbl of tables) {
+    try {
+      const r = await fetch(`${SUPA_URL}/rest/v1/${tbl}?chart_number=eq.${encodeURIComponent(chart)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
+        body: JSON.stringify({ phone: phone })
+      });
+      const d = await r.json();
+      if (Array.isArray(d)) updated += d.length;
+    } catch(e) {}
+  }
+  if (updated > 0) {
+    resEl.textContent = `✅ ${updated}건 변경 완료`;
+    resEl.style.color = '#16a34a';
+    document.getElementById('phone-chart').value = '';
+    document.getElementById('phone-new').value = '';
+  } else {
+    resEl.textContent = '⚠️ 해당 차트번호를 찾을 수 없습니다.';
+    resEl.style.color = '#c0392b';
+  }
+}
+
+function unlockApp() { /* 구버전 호환용 */ }
 
 // ══ 접수 조회 ══════════════════════════════════════════
 const SUPA_URL  = 'https://rurbfcocihvapbtdzbyt.supabase.co';
@@ -3362,7 +3128,7 @@ function loadSearchTab() {
   document.getElementById('search-type').value = 'all';
   document.getElementById('search-chart').value = '';
   document.getElementById('search-name').value = '';
-  doSearch();
+  document.getElementById('search-results').innerHTML = '<div style="text-align:center;padding:20px;color:#9ca3af;font-size:17px;font-weight:700;">조회 버튼을 눌러주세요.</div>';
 }
 
 async function doSearch() {
@@ -3377,7 +3143,7 @@ async function doSearch() {
 
   for (const tbl of tables) {
     let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
-    if (chart) url += `&chart=eq.${encodeURIComponent(chart)}`;
+    if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
     if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
       const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
@@ -3505,6 +3271,14 @@ function copyCell(text, btn) {
   });
 }
 
+function refreshSearch() {
+  if (document.getElementById('s-recep') && document.getElementById('s-recep').classList.contains('active')) {
+    doSearch();
+  } else {
+    doSearch2();
+  }
+}
+
 function closeModal() { document.getElementById('detail-modal').style.display = 'none'; }
 
 function printModalPDF() {
@@ -3559,7 +3333,7 @@ async function saveEdit() {
       headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
       body: JSON.stringify({ [nameField]: newName, chart: newChart })
     });
-    if (r.ok) { toast('✅ 수정 완료!'); closeEditModal(); closeModal(); doSearch(); }
+    if (r.ok) { toast('✅ 수정 완료!'); closeEditModal(); closeModal(); refreshSearch(); }
     else { const err = await r.text(); alert(`❌ 수정 실패 (${r.status}):\n${err}`); }
   } catch(e) { alert(`❌ 오류: ${e.message}`); }
 }
@@ -3587,7 +3361,7 @@ async function confirmDelete() {
       method: 'DELETE',
       headers: { 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' }
     });
-    if (r.ok) { toast('🗑️ 삭제 완료!'); closeDeleteModal(); closeModal(); doSearch(); }
+    if (r.ok) { toast('🗑️ 삭제 완료!'); closeDeleteModal(); closeModal(); refreshSearch(); }
     else { const err = await r.text(); alert(`❌ 삭제 실패 (${r.status}):\n${err}`); }
   } catch(e) { alert(`❌ 오류: ${e.message}`); }
 }
@@ -3692,6 +3466,187 @@ async function saveClinResult(){
   if(saveError){ toast('저장 실패: '+saveError.message); return; }
   toast('✅ '+scale.title+' 저장 완료! ('+ptNum+')');
 }
+
+// ══ 예약 탭 ══════════════════════════════════════════
+var APPT_TIMES_FULL = ['10:00','11:00','3:00','4:00'];
+var APPT_TIMES_SAT  = ['10:00','11:00'];
+var REASONS_MAP = {1:'우울',2:'불면',3:'불안',4:'강박',5:'트라우마',6:'ADHD',7:'틱',8:'환청환시'};
+var _apptData = {}, _apptDates2 = [];
+
+function toD6appt(d){return String(d.getFullYear()).slice(2)+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');}
+
+function getApptDates2(){
+  var dates=[], base=new Date();
+  for(var i=0;i<8;i++){var d=new Date(base);d.setDate(d.getDate()+i);dates.push(toD6appt(d));}
+  return dates;
+}
+
+function formatReason2(nums){
+  if(!nums) return '';
+  return String(nums).split('').filter(function(n){return REASONS_MAP[n];}).map(function(n){return n+'.'+REASONS_MAP[n];}).join(' ');
+}
+
+function escQ2(v){return (v||'').toString().replace(/"/g,'&quot;');}
+
+async function loadAppts(){
+  var btn=document.getElementById('apptLoadBtn');
+  if(btn){btn.disabled=true;btn.textContent='로딩중...';}
+  _apptDates2=getApptDates2();
+  try{
+    var inFilter=_apptDates2.join(',');
+    var r=await fetch(SUPA_URL+'/rest/v1/appointments?appt_date=in.('+inFilter+')&select=*&order=appt_date.asc,appt_time.asc&limit=1000',
+      {headers:{apikey:SUPA_ANON,'Authorization':'Bearer '+SUPA_ANON}});
+    var rows=await r.json();
+    _apptData={};
+    _apptDates2.forEach(function(d){_apptData[d]=[];});
+    rows.forEach(function(row){if(_apptData[row.appt_date])_apptData[row.appt_date].push(row);});
+    renderApptTable2();
+  }catch(e){alert('예약 로딩 실패: '+e.message);}
+  finally{if(btn){btn.disabled=false;btn.textContent='🔄 새로고침';}}
+}
+
+function renderApptTable2(){
+  var days=['일','월','화','수','목','금','토'];
+  var container=document.getElementById('apptContainer');
+  if(!container) return;
+  container.innerHTML='';
+  _apptDates2.forEach(function(d6){
+    var y=2000+parseInt(d6.slice(0,2)),mo=parseInt(d6.slice(2,4)),dd=parseInt(d6.slice(4,6));
+    var dow=new Date(y,mo-1,dd).getDay();
+    if(dow===0||dow===3) return; // 일/수 스킵
+    var isSat=dow===6, isToday=d6===toD6appt(new Date());
+    var times=isSat?APPT_TIMES_SAT:APPT_TIMES_FULL;
+    var block=document.createElement('div');
+    block.style.cssText='margin-bottom:16px;border:1px solid #e0e4ef;border-radius:10px;overflow:hidden;';
+    var header='<div style="background:#4f8ef7;padding:9px 14px;display:flex;align-items:center;gap:10px;">'
+      +'<span style="font-family:monospace;font-size:14px;font-weight:700;color:#fff;">'+d6+'</span>'
+      +'<span style="font-size:13px;font-weight:600;color:#fff;">('+days[dow]+')</span>'
+      +(isToday?'<span style="font-size:10px;background:rgba(255,255,255,0.3);color:#fff;padding:2px 6px;border-radius:4px;">오늘</span>':'')
+      +'</div>';
+    var td='padding:7px 8px;border-bottom:1px solid #f0f2f8;vertical-align:middle;';
+    var inp='background:transparent;border:none;border-bottom:1px solid #e0e4ef;padding:3px 4px;font-size:14px;outline:none;font-family:inherit;width:100%;';
+    var tableHtml='<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:14px;">'
+      +'<thead><tr style="background:#f7f8fc;">'
+      +'<th style="padding:8px 8px;text-align:left;border-bottom:1px solid #e0e4ef;min-width:50px;font-size:12px;">시간</th>'
+      +'<th style="padding:8px 8px;text-align:left;border-bottom:1px solid #e0e4ef;min-width:75px;font-size:12px;">성함</th>'
+      +'<th style="padding:8px 8px;text-align:left;border-bottom:1px solid #e0e4ef;min-width:100px;font-size:12px;">전화</th>'
+      +'<th style="padding:8px 8px;text-align:center;border-bottom:1px solid #e0e4ef;width:38px;font-size:12px;">나이</th>'
+      +'<th style="padding:8px 8px;text-align:left;border-bottom:1px solid #e0e4ef;min-width:110px;font-size:12px;">진료이유</th>'
+      +'<th style="padding:8px 8px;text-align:left;border-bottom:1px solid #e0e4ef;min-width:100px;font-size:12px;">기타</th>'
+      +'<th style="padding:8px 8px;text-align:left;border-bottom:1px solid #e0e4ef;min-width:110px;font-size:12px;">비고</th>'
+      +'<th style="padding:8px 8px;border-bottom:1px solid #e0e4ef;width:80px;font-size:12px;"></th>'
+      +'</tr></thead><tbody>';
+    times.forEach(function(time){
+      var existing=(_apptData[d6]||[]).filter(function(r){return r.appt_time===time;});
+      if(existing.length===0){tableHtml+=renderApptRow2(d6,time,null);}
+      else{existing.forEach(function(r){tableHtml+=renderApptRow2(d6,time,r);});}
+      tableHtml+='<tr class="appt-add-row2" data-d6="'+d6+'" data-time="'+time+'">'
+        +'<td colspan="8" style="padding:2px 8px;border-bottom:1px solid #f0f2f8;">'
+        +'<button onclick="addApptRow2(this)" style="font-size:11px;padding:2px 10px;background:none;border:1px dashed #c7d9fb;border-radius:4px;color:#4f8ef7;cursor:pointer;">+ 행 추가</button>'
+        +'</td></tr>';
+    });
+    tableHtml+='</tbody></table></div>';
+    block.innerHTML=header+tableHtml;
+    container.appendChild(block);
+  });
+}
+
+function renderApptRow2(d6,time,data){
+  var id=data?data.id:0;
+  var hasFill=data&&(data.name||data.phone);
+  var bg=hasFill?'background:#dbeafe;':'';
+  var td='padding:7px 8px;border-bottom:1px solid #f0f2f8;vertical-align:middle;';
+  var inp='background:transparent;border:none;border-bottom:1px solid #e0e4ef;padding:3px 4px;font-size:14px;outline:none;font-family:inherit;';
+  var rn=data?String(data.reason||'').replace(/[^1-8]/g,''):'';
+  return '<tr style="'+bg+'" data-d6="'+d6+'" data-time="'+time+'" data-id="'+id+'">'
+    +'<td style="'+td+'font-weight:700;color:#444;font-size:14px;">'+time+'</td>'
+    +'<td style="'+td+'"><input style="'+inp+'width:72px;" value="'+escQ2(data?data.name||'':'')+'" placeholder="성함" class="appt-inp2" data-field="name" onblur="saveApptRow2(this)"></td>'
+    +'<td style="'+td+'"><input style="'+inp+'width:100px;" value="'+escQ2(data?data.phone||'':'')+'" placeholder="전화번호" class="appt-inp2" data-field="phone" onblur="saveApptRow2(this)"></td>'
+    +'<td style="'+td+';text-align:center;"><input style="'+inp+'width:34px;text-align:center;" value="'+escQ2(data?data.age||'':'')+'" placeholder="나이" class="appt-inp2" data-field="age" onblur="saveApptRow2(this)"></td>'
+    +'<td style="'+td+'">'
+    +'<input style="'+inp+'width:48px;" value="'+rn+'" placeholder="1 2 3" maxlength="10" class="appt-inp2 reason-inp2" data-field="reason" oninput="updateReason2Disp(this)" onblur="saveApptRow2(this)">'
+    +'<div class="reason-disp2" style="font-size:11px;color:#555;margin-top:2px;">'+formatReason2(rn)+'</div>'
+    +'</td>'
+    +'<td style="'+td+'"><input style="'+inp+'width:95px;" value="'+escQ2(data?data.note||'':'')+'" placeholder="기타" class="appt-inp2" data-field="note" onblur="saveApptRow2(this)"></td>'
+    +'<td style="'+td+'"><input style="'+inp+'width:105px;" value="'+escQ2(data?data.memo||'':'')+'" placeholder="비고" class="appt-inp2" data-field="memo" onblur="saveApptRow2(this)"></td>'
+    +'<td style="'+td+';white-space:nowrap;">'
+    +'<button onclick="saveApptRow2Btn(this)" style="font-size:11px;padding:3px 8px;background:#18a97a;color:#fff;border:none;border-radius:4px;cursor:pointer;margin-right:3px;">저장</button>'
+    +(id?'<button onclick="deleteAppt2('+id+')" style="font-size:11px;padding:3px 7px;background:none;border:1px solid #fbb;color:#e53e3e;border-radius:4px;cursor:pointer;">삭제</button>':'')
+    +'<span class="appt-status2" style="font-size:10px;margin-left:2px;"></span>'
+    +'</td>'
+    +'</tr>';
+}
+
+function updateReason2Disp(input){
+  var td=input.parentElement;
+  var div=td?td.querySelector('.reason-disp2'):null;
+  if(div) div.textContent=formatReason2(input.value);
+}
+
+function addApptRow2(btn){
+  var tr=btn.closest('tr');
+  var d6=tr.dataset.d6,time=tr.dataset.time;
+  var tmp=document.createElement('tbody');
+  tmp.innerHTML=renderApptRow2(d6,time,null);
+  tr.parentNode.insertBefore(tmp.firstChild,tr);
+}
+
+async function saveApptRowData2(row){
+  if(!row) return;
+  var d6=row.dataset.d6,time=row.dataset.time,id=parseInt(row.dataset.id)||0;
+  var getVal=function(f){var el=row.querySelector('[data-field="'+f+'"]');return el?el.value.trim():'';};
+  var name=getVal('name'),phone=getVal('phone'),age=getVal('age'),reason=getVal('reason'),note=getVal('note'),memo=getVal('memo');
+  if(!id&&!name&&!phone&&!age&&!reason&&!note&&!memo) return;
+  var statusEl=row.querySelector('.appt-status2');
+  try{
+    if(id){
+      var r=await fetch(SUPA_URL+'/rest/v1/appointments?id=eq.'+id,{
+        method:'PATCH',headers:{apikey:SUPA_ANON,'Authorization':'Bearer '+SUPA_ANON,'Content-Type':'application/json'},
+        body:JSON.stringify({name:name,phone:phone,age:age,reason:reason,note:note,memo:memo,updated_at:new Date().toISOString()})
+      });
+      if(statusEl){statusEl.textContent='✓';statusEl.style.color='#18a97a';setTimeout(function(){statusEl.textContent='';},2000);}
+    } else {
+      var r2=await fetch(SUPA_URL+'/rest/v1/appointments',{
+        method:'POST',headers:{apikey:SUPA_ANON,'Authorization':'Bearer '+SUPA_ANON,'Content-Type':'application/json','Prefer':'return=representation'},
+        body:JSON.stringify({appt_date:d6,appt_time:time,name:name,phone:phone,age:age,reason:reason,note:note,memo:memo})
+      });
+      var newRow=await r2.json();
+      if(newRow&&newRow[0]){
+        row.dataset.id=newRow[0].id;
+        var delBtns=row.querySelectorAll('button');
+        if(delBtns.length>=1&&statusEl){statusEl.textContent='✓ 저장됨';statusEl.style.color='#18a97a';setTimeout(function(){statusEl.textContent='';loadAppts();},1500);}
+      }
+    }
+  }catch(e){if(statusEl){statusEl.textContent='✕';statusEl.style.color='#e53e3e';}}
+}
+
+async function saveApptRow2(input){
+  var row=input.closest('tr');
+  if(!row) return;
+  var id=parseInt(row.dataset.id)||0;
+  if(!id) return;
+  await saveApptRowData2(row);
+}
+
+async function saveApptRow2Btn(btn){
+  var row=btn.closest('tr');
+  await saveApptRowData2(row);
+}
+
+async function deleteAppt2(id){
+  if(!id||id==='0') return;
+  if(!confirm('이 예약을 삭제하시겠습니까?')) return;
+  try{
+    await fetch(SUPA_URL+'/rest/v1/appointments?id=eq.'+id,{
+      method:'DELETE',headers:{apikey:SUPA_ANON,'Authorization':'Bearer '+SUPA_ANON}
+    });
+    loadAppts();
+  }catch(e){alert('삭제 실패: '+e.message);}
+}
+
+
+
+
 
 </script>
 </body>
