@@ -3012,7 +3012,7 @@ async function doSearch2() {
   let rows = [];
   for (const tbl of tblList) {
     let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
-    if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
+    if (chart) url += `&chart=eq.${encodeURIComponent(chart)}`;
     if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
       const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
@@ -3053,7 +3053,7 @@ async function doSearch3() {
   let rows = [];
   for (const tbl of tblList) {
     let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
-    if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
+    if (chart) url += `&chart=eq.${encodeURIComponent(chart)}`;
     if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
       const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
@@ -3091,19 +3091,30 @@ async function changePhone() {
   const resEl  = document.getElementById('phone-result');
   if (!chart || !phone) { resEl.textContent = '⚠️ 차트번호와 전화번호를 모두 입력하세요.'; resEl.style.color='#c0392b'; return; }
   resEl.textContent = '처리 중...'; resEl.style.color = '#888';
-  const tables = ['chojin', 'daeri'];
   let updated = 0;
-  for (const tbl of tables) {
-    try {
-      const r = await fetch(`${SUPA_URL}/rest/v1/${tbl}?chart_number=eq.${encodeURIComponent(chart)}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
-        body: JSON.stringify({ phone: phone })
-      });
-      const d = await r.json();
-      if (Array.isArray(d)) updated += d.length;
-    } catch(e) {}
-  }
+
+  // chojin: phone 컬럼
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/chojin?chart=eq.${encodeURIComponent(chart)}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
+      body: JSON.stringify({ phone: phone })
+    });
+    const d = await r.json();
+    if (Array.isArray(d)) updated += d.length;
+  } catch(e) {}
+
+  // daeri: visitor_phone 컬럼
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/daeri?chart=eq.${encodeURIComponent(chart)}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
+      body: JSON.stringify({ visitor_phone: phone })
+    });
+    const d = await r.json();
+    if (Array.isArray(d)) updated += d.length;
+  } catch(e) {}
+
   if (updated > 0) {
     resEl.textContent = `✅ ${updated}건 변경 완료`;
     resEl.style.color = '#16a34a';
@@ -3188,7 +3199,7 @@ async function doSearch() {
 
   for (const tbl of tables) {
     let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
-    if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
+    if (chart) url += `&chart=eq.${encodeURIComponent(chart)}`;
     if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
       const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
