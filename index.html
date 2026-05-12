@@ -3492,7 +3492,7 @@ function doLogin() {
 }
 
 function examSearchTabClick(el) {
-  // 매번 비번 요청
+  // 클릭할 때마다 비번 요청
   searchUnlocked = false;
   document.getElementById('search-lock-pw').value = '';
   document.getElementById('search-lock-err').style.display = 'none';
@@ -3571,17 +3571,18 @@ async function doSearch2() {
   const name  = document.getElementById('search-name2').value.trim();
   const resEl = document.getElementById('search-results2');
   resEl.innerHTML = '<div class="empty"><div class="spinner"></div></div>';
-  let table = type === 'chojin' ? 'chojin_records' : type === 'daeri' ? 'daeri_records' : null;
-  const tables = table ? [table] : ['chojin_records','daeri_records'];
+  const tableMap2 = type === 'chojin' ? [['chojin','chojin']]
+    : type === 'daeri' ? [['daeri','daeri']]
+    : [['chojin','chojin'],['daeri','daeri']];
   let rows = [];
-  for (const tbl of tables) {
+  for (const [tbl, logical] of tableMap2) {
     let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
     if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
-    if (name)  url += `&name=ilike.*${encodeURIComponent(name)}*`;
+    if (name)  url += `&${logical==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
       const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
       const d = await r.json();
-      if (Array.isArray(d)) rows = rows.concat(d.map(x => ({...x, _tbl: tbl})));
+      if (Array.isArray(d)) rows = rows.concat(d.map(x => ({...x, _tbl: logical})));
     } catch(e) {}
   }
   if (!rows.length) { resEl.innerHTML = '<div class="empty">결과 없음</div>'; return; }
@@ -3595,7 +3596,7 @@ async function changePhone() {
   const resEl  = document.getElementById('phone-result');
   if (!chart || !phone) { resEl.textContent = '⚠️ 차트번호와 전화번호를 모두 입력하세요.'; resEl.style.color='#c0392b'; return; }
   resEl.textContent = '처리 중...'; resEl.style.color = '#888';
-  const tables = ['chojin_records', 'daeri_records'];
+  const tables = ['chojin', 'daeri'];
   let updated = 0;
   for (const tbl of tables) {
     try {
@@ -3687,21 +3688,17 @@ async function doSearch() {
   const el    = document.getElementById('search-results');
   el.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">⏳ 조회 중...</div>';
 
-  const tableMap = type === 'all'
-    ? [['chojin_records','chojin'], ['daeri_records','daeri']]
-    : type === 'chojin'
-      ? [['chojin_records','chojin']]
-      : [['daeri_records','daeri']];
+  const tableArr = type === 'all' ? ['chojin','daeri'] : [type];
   let allRows = [];
 
-  for (const [realTbl, logicalType] of tableMap) {
-    let url = `${SUPA_URL}/rest/v1/${realTbl}?order=created_at.desc&limit=100`;
+  for (const tbl of tableArr) {
+    let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
     if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
-    if (name)  url += `&${logicalType==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
+    if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
       const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
       const rows = await r.json();
-      if (Array.isArray(rows)) allRows.push(...rows.map(row => ({...row, _table: logicalType})));
+      if (Array.isArray(rows)) allRows.push(...rows.map(row => ({...row, _table: tbl})));
     } catch(e) {}
   }
 
@@ -3731,14 +3728,13 @@ async function doSearch() {
 }
 
 async function openDetail(id, table) {
-  const realTbl = table === 'chojin' ? 'chojin_records' : table === 'daeri' ? 'daeri_records' : table;
-  const r = await fetch(`${SUPA_URL}/rest/v1/${realTbl}?id=eq.${id}`, {
+  const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`, {
     headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }
   });
   const rows = await r.json();
   if (!rows.length) return;
   const row = rows[0];
-  currentModalData = { row, table, realTbl };
+  currentModalData = { row, table };
 
   document.getElementById('modal-title').textContent =
     table === 'chojin' ? `초진 접수 — ${row.name||''}` : `대리 처방 — ${row.visitor_name||''}`;
@@ -3874,8 +3870,7 @@ async function saveEdit() {
   if (!confirm(`수정하시겠습니까?\n이름: ${newName}\n차트번호: ${newChart}`)) return;
   const nameField = table === 'chojin' ? 'name' : 'visitor_name';
   try {
-    const realTbl = table === 'chojin' ? 'chojin_records' : table === 'daeri' ? 'daeri_records' : table;
-    const r = await fetch(`${SUPA_URL}/rest/v1/${realTbl}?id=eq.${encodeURIComponent(row.id)}`, {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${encodeURIComponent(row.id)}`, {
       method: 'PATCH',
       headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
       body: JSON.stringify({ [nameField]: newName, chart: newChart })
@@ -3904,8 +3899,7 @@ async function confirmDelete() {
   const name = table === 'chojin' ? (row.name||'') : (row.visitor_name||'');
   if (!confirm(`정말 삭제하시겠습니까?\n복구할 수 없습니다.\n\n대상: ${name} / 차트 ${row.chart||'-'}`)) return;
   try {
-    const realTbl2 = table === 'chojin' ? 'chojin_records' : table === 'daeri' ? 'daeri_records' : table;
-    const r = await fetch(`${SUPA_URL}/rest/v1/${realTbl2}?id=eq.${encodeURIComponent(row.id)}`, {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${encodeURIComponent(row.id)}`, {
       method: 'DELETE',
       headers: { 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' }
     });
