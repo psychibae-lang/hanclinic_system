@@ -850,18 +850,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <!-- 검색 바 -->
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;">
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <select id="search-type" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;background:white;">
+        <select id="search-type2" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;background:white;">
           <option value="all">전체</option>
           <option value="chojin">초진</option>
           <option value="daeri">대리</option>
         </select>
-        <input type="text" id="search-chart" placeholder="차트번호" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:110px;">
-        <input type="text" id="search-name" placeholder="이름" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:100px;">
+        <input type="text" id="search-chart2" placeholder="차트번호" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:110px;">
+        <input type="text" id="search-name2" placeholder="이름" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:100px;">
         <button onclick="doSearch2()" style="padding:9px 18px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:17px;font-weight:700;cursor:pointer;">🔍 조회</button>
       </div>
     </div>
 
-    <div id="search-results" style="font-size:17px;font-weight:700;color:#9ca3af;text-align:center;padding:20px;">조회 버튼을 눌러주세요.</div>
+    <div id="search-results2" style="font-size:17px;font-weight:700;color:#9ca3af;text-align:center;padding:20px;">조회 버튼을 눌러주세요.</div>
   </div>
   </div>
 
@@ -1046,17 +1046,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div style="max-width:680px;margin:0 auto;padding:16px">
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:14px;">
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <select id="search-type2" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;background:white;">
+        <select id="search-type3" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;background:white;">
           <option value="all">전체</option>
           <option value="chojin">초진</option>
           <option value="daeri">대리</option>
         </select>
-        <input type="text" id="search-chart2" placeholder="차트번호" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:110px;">
-        <input type="text" id="search-name2" placeholder="이름" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:100px;">
-        <button onclick="doSearch2()" style="padding:9px 18px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:17px;font-weight:700;cursor:pointer;">🔍 조회</button>
+        <input type="text" id="search-chart3" placeholder="차트번호" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:110px;">
+        <input type="text" id="search-name3" placeholder="이름" style="padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:17px;font-weight:700;width:100px;">
+        <button onclick="doSearch3()" style="padding:9px 18px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:17px;font-weight:700;cursor:pointer;">🔍 조회</button>
       </div>
     </div>
-    <div id="search-results2" style="font-size:17px;font-weight:700;color:#9ca3af;text-align:center;padding:20px;">조회 버튼을 눌러주세요.</div>
+    <div id="search-results3" style="font-size:17px;font-weight:700;color:#9ca3af;text-align:center;padding:20px;">조회 버튼을 눌러주세요.</div>
   </div>
   </div>
 
@@ -3003,6 +3003,47 @@ async function doSearch2() {
   const chart = document.getElementById('search-chart2').value.trim();
   const name  = document.getElementById('search-name2').value.trim();
   const resEl = document.getElementById('search-results2');
+  resEl.innerHTML = '<div class="empty"><div class="spinner"></div></div>';
+  const tblList = type === 'chojin' ? ['chojin'] : type === 'daeri' ? ['daeri'] : ['chojin','daeri'];
+  let rows = [];
+  for (const tbl of tblList) {
+    let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
+    if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
+    if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
+    try {
+      const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
+      const d = await r.json();
+      if (Array.isArray(d)) rows = rows.concat(d.map(x => ({...x, _tbl: tbl})));
+    } catch(e) {}
+  }
+  rows.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  if (!rows.length) { resEl.innerHTML = '<div class="empty">결과 없음</div>'; return; }
+  resEl.innerHTML = rows.map(row => {
+    const isCj = row._tbl === 'chojin';
+    const nm   = isCj ? (row.name||'-') : (row.visitor_name||'-');
+    const ch   = row.chart_number || row.chart || '-';
+    const dt   = new Date(row.created_at).toLocaleString('ko-KR');
+    const badge = isCj
+      ? `<span style="background:#dbeafe;color:#1d4ed8;font-size:15px;padding:2px 8px;border-radius:10px;font-weight:700;">초진</span>`
+      : `<span style="background:#d1fae5;color:#065f46;font-size:15px;padding:2px 8px;border-radius:10px;font-weight:700;">대리</span>`;
+    return `<div onclick="openDetail('${row.id}','${row._tbl}')"
+      style="background:white;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:border-color 0.15s;"
+      onmouseover="this.style.borderColor='#1a3a5c'" onmouseout="this.style.borderColor='#e5e7eb'">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        ${badge}
+        <span style="font-size:18px;font-weight:700;">${nm}</span>
+        <span style="color:#9ca3af;font-size:16px;font-weight:700;margin-left:4px;">차트 ${ch}</span>
+      </div>
+      <div style="font-size:15px;font-weight:700;color:#9ca3af;">${dt}</div>
+    </div>`;
+  }).join('');
+}
+
+async function doSearch3() {
+  const type  = document.getElementById('search-type3').value;
+  const chart = document.getElementById('search-chart3').value.trim();
+  const name  = document.getElementById('search-name3').value.trim();
+  const resEl = document.getElementById('search-results3');
   resEl.innerHTML = '<div class="empty"><div class="spinner"></div></div>';
   const tblList = type === 'chojin' ? ['chojin'] : type === 'daeri' ? ['daeri'] : ['chojin','daeri'];
   let rows = [];
