@@ -1226,6 +1226,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 <div class="toast" id="toast"></div>
 <script>
+// ── 전역 변수 (onclick보다 먼저 선언) ──
+const PW_EXAM        = '0319871248';
+const PW_RECEP       = 'hanriver0325';
+const PW_SEARCH_EXAM = 'hanriver0325';
+let currentLoginTab  = 'exam';
+let searchUnlocked   = false;
+
 const SCALES = {
   asrs:{no:1,title:'AD',name:'ASRS',cat:'other',tag:'ADHD',
     inst:'지난 6개월 동안 당신이 어떻게 느끼고 행동하였는지를 가장 잘 나타내주는 칸에 표시하세요.',
@@ -3437,11 +3444,6 @@ function cj2ResetForm(){
 
 // ══ 잠금 해제 ══════════════════════════════════════════
 // ── 로그인 관련 ──────────────────────────────
-const PW_EXAM  = '0319871248';   // 검사탭용
-const PW_RECEP = 'hanriver0325'; // 접수컴퓨터용
-const PW_SEARCH_EXAM = 'hanriver0325'; // 검사탭용 접수조회 비번
-let currentLoginTab = 'exam';
-let searchUnlocked = false;
 
 function selectLoginTab(tab) {
   currentLoginTab = tab;
