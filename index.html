@@ -3091,49 +3091,27 @@ async function changePhone() {
   const resEl  = document.getElementById('phone-result');
   if (!chart || !phone) { resEl.textContent = '⚠️ 차트번호와 전화번호를 모두 입력하세요.'; resEl.style.color='#c0392b'; return; }
   resEl.textContent = '처리 중...'; resEl.style.color = '#888';
-  let updated = 0;
 
-  // chojin: phone 컬럼 — 먼저 해당 차트 존재 확인 후 PATCH
+  // ── 1) patients 테이블 upsert (주 앱 기준 핵심 테이블) ──
   try {
-    const chk = await fetch(`${SUPA_URL}/rest/v1/chojin?chart=eq.${encodeURIComponent(chart)}&select=id`, {
-      headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }
+    const r = await fetch(`${SUPA_URL}/rest/v1/patients`, {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'resolution=merge-duplicates' },
+      body: JSON.stringify({ chart_no: chart, phone: phone, updated_at: new Date().toISOString() })
     });
-    const chkD = await chk.json();
-    if (Array.isArray(chkD) && chkD.length > 0) {
-      await fetch(`${SUPA_URL}/rest/v1/chojin?chart=eq.${encodeURIComponent(chart)}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' },
-        body: JSON.stringify({ phone: phone })
-      });
-      updated += chkD.length;
+    if (r.status < 300) {
+      resEl.textContent = `✅ 전화번호 변경 완료 (${phone})`;
+      resEl.style.color = '#16a34a';
+      document.getElementById('phone-chart').value = '';
+      document.getElementById('phone-new').value = '';
+      return;
     }
-  } catch(e) { console.error('chojin phone update error:', e); }
+    const err = await r.text();
+    console.error('patients upsert 실패:', r.status, err);
+  } catch(e) { console.error('patients upsert 오류:', e); }
 
-  // daeri: visitor_phone 컬럼
-  try {
-    const chk = await fetch(`${SUPA_URL}/rest/v1/daeri?chart=eq.${encodeURIComponent(chart)}&select=id`, {
-      headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }
-    });
-    const chkD = await chk.json();
-    if (Array.isArray(chkD) && chkD.length > 0) {
-      await fetch(`${SUPA_URL}/rest/v1/daeri?chart=eq.${encodeURIComponent(chart)}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' },
-        body: JSON.stringify({ visitor_phone: phone })
-      });
-      updated += chkD.length;
-    }
-  } catch(e) { console.error('daeri phone update error:', e); }
-
-  if (updated > 0) {
-    resEl.textContent = `✅ ${updated}건 변경 완료`;
-    resEl.style.color = '#16a34a';
-    document.getElementById('phone-chart').value = '';
-    document.getElementById('phone-new').value = '';
-  } else {
-    resEl.textContent = '⚠️ 해당 차트번호를 찾을 수 없습니다.';
-    resEl.style.color = '#c0392b';
-  }
+  resEl.textContent = '⚠️ 변경 실패. 차트번호를 확인하거나 콘솔(F12)에서 오류를 확인하세요.';
+  resEl.style.color = '#c0392b';
 }
 
 function unlockApp() { /* 구버전 호환용 */ }
