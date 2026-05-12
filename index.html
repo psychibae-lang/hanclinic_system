@@ -3096,22 +3096,39 @@ async function doSearch2() {
   const name  = document.getElementById('search-name2').value.trim();
   const resEl = document.getElementById('search-results2');
   resEl.innerHTML = '<div class="empty"><div class="spinner"></div></div>';
-  const tableMap2 = type === 'chojin' ? [['chojin','chojin']]
-    : type === 'daeri' ? [['daeri','daeri']]
-    : [['chojin','chojin'],['daeri','daeri']];
+  const tblList = type === 'chojin' ? ['chojin'] : type === 'daeri' ? ['daeri'] : ['chojin','daeri'];
   let rows = [];
-  for (const [tbl, logical] of tableMap2) {
+  for (const tbl of tblList) {
     let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
     if (chart) url += `&chart_number=eq.${encodeURIComponent(chart)}`;
-    if (name)  url += `&${logical==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
+    if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
     try {
       const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
       const d = await r.json();
-      if (Array.isArray(d)) rows = rows.concat(d.map(x => ({...x, _tbl: logical})));
+      if (Array.isArray(d)) rows = rows.concat(d.map(x => ({...x, _tbl: tbl})));
     } catch(e) {}
   }
+  rows.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
   if (!rows.length) { resEl.innerHTML = '<div class="empty">결과 없음</div>'; return; }
-  resEl.innerHTML = rows.map(row => renderSearchRow(row)).join('');
+  resEl.innerHTML = rows.map(row => {
+    const isCj = row._tbl === 'chojin';
+    const nm   = isCj ? (row.name||'-') : (row.visitor_name||'-');
+    const ch   = row.chart_number || row.chart || '-';
+    const dt   = new Date(row.created_at).toLocaleString('ko-KR');
+    const badge = isCj
+      ? `<span style="background:#dbeafe;color:#1d4ed8;font-size:15px;padding:2px 8px;border-radius:10px;font-weight:700;">초진</span>`
+      : `<span style="background:#d1fae5;color:#065f46;font-size:15px;padding:2px 8px;border-radius:10px;font-weight:700;">대리</span>`;
+    return `<div onclick="openDetail('${row.id}','${row._tbl}')"
+      style="background:white;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:border-color 0.15s;"
+      onmouseover="this.style.borderColor='#1a3a5c'" onmouseout="this.style.borderColor='#e5e7eb'">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        ${badge}
+        <span style="font-size:18px;font-weight:700;">${nm}</span>
+        <span style="color:#9ca3af;font-size:16px;font-weight:700;margin-left:4px;">차트 ${ch}</span>
+      </div>
+      <div style="font-size:15px;font-weight:700;color:#9ca3af;">${dt}</div>
+    </div>`;
+  }).join('');
 }
 
 // 전화번호 변경
