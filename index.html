@@ -1633,7 +1633,7 @@ function getSevCls(i){
   return'sev-s';
 }
 
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function copyText(t){navigator.clipboard.writeText(t).then(()=>toast('복사되었습니다!'));}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 function p2(n){return String(n).padStart(2,'0');}
