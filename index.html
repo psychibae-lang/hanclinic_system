@@ -1589,7 +1589,7 @@ function renderQ(){
   const isLast=q===total-1&&st.scaleIdx===st.scaleIds.length-1;
   const isScaleLast=q===total-1;
   document.getElementById('q-body').innerHTML=`
-    <style id="q-font-style"></style>
+    
     <div class="inst">${sc.inst}</div>
     <div class="q-num">문항 ${q+1} / ${total}</div>
     <div class="q-txt">${sc.qs[q]}</div>
@@ -1622,7 +1622,8 @@ function changeFontSize(dir){
 }
 function applyFontSize(){
   const scale=fontScales[fontIdx];
-  const style=document.getElementById('q-font-style');
+  let style=document.getElementById('q-font-style');
+  if(!style){style=document.createElement('style');style.id='q-font-style';document.head.appendChild(style);}
   const css=`
     .q-txt{font-size:${Math.round(baseFontSizes.q*scale)}px !important}
     .opt{font-size:${Math.round(baseFontSizes.opt*scale)}px !important; padding:${Math.round(13*scale)}px 16px !important}
