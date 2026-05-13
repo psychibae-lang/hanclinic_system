@@ -1006,8 +1006,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <!-- ══════════════════════════════════ -->
 <div class="screen" id="s-recep">
   <div style="background:#1d4ed8;color:#fff;text-align:center;padding:10px;font-size:15px;font-weight:700;">한강의원 접수관리 <span style="opacity:0.7;font-size:12px;">(접수컴퓨터용)</span></div>
-  <div class="sub-hdr" style="grid-template-columns:repeat(5,1fr)">
+  <div class="sub-hdr" style="grid-template-columns:repeat(6,1fr)">
     <span class="act" onclick="switchRecepTab('remote',this)">원격검사</span>
+    <span onclick="window.open('https://temp-share-image-hanriver.web.app/','_blank')" style="background:#e67e22;">임시이미지공유</span>
     <span onclick="switchRecepTab('status2',this)">완료 현황</span>
     <span onclick="switchRecepTab('search2',this)">접수 조회</span>
     <span onclick="switchRecepTab('appt',this);loadAppts()">예약</span>
@@ -3676,12 +3677,13 @@ function renderApptTable2(){
 function renderApptRow2(d6,time,data){
   var id=data?data.id:0;
   var hasFill=data&&(data.name||data.phone);
-  var bg=hasFill?'background:#dbeafe;':'';
+  var hasAlert=data&&(data.note||data.memo);
+  var bg=hasAlert?'background:#fee2e2;':hasFill?'background:#dbeafe;':'';
   var td='padding:7px 8px;border-bottom:1px solid #f0f2f8;vertical-align:middle;';
   var inp='background:transparent;border:none;border-bottom:1px solid #e0e4ef;padding:3px 4px;font-size:14px;outline:none;font-family:inherit;';
   var rn=data?String(data.reason||'').replace(/[^1-8]/g,''):'';
   return '<tr style="'+bg+'" data-d6="'+d6+'" data-time="'+time+'" data-id="'+id+'">'
-    +'<td style="'+td+'font-weight:700;color:#444;font-size:14px;">'+time+'</td>'
+    +'<td style="'+td+'font-weight:700;color:#444;font-size:14px;white-space:nowrap;">'+time+'</td>'
     +'<td style="'+td+'"><input style="'+inp+'width:72px;" value="'+escQ2(data?data.name||'':'')+'" placeholder="성함" class="appt-inp2" data-field="name" onblur="saveApptRow2(this)"></td>'
     +'<td style="'+td+'"><input style="'+inp+'width:100px;" value="'+escQ2(data?data.phone||'':'')+'" placeholder="전화번호" class="appt-inp2" data-field="phone" onblur="saveApptRow2(this)"></td>'
     +'<td style="'+td+';text-align:center;"><input style="'+inp+'width:34px;text-align:center;" value="'+escQ2(data?data.age||'':'')+'" placeholder="나이" class="appt-inp2" data-field="age" onblur="saveApptRow2(this)"></td>'
@@ -3689,11 +3691,11 @@ function renderApptRow2(d6,time,data){
     +'<input style="'+inp+'width:48px;" value="'+rn+'" placeholder="1 2 3" maxlength="10" class="appt-inp2 reason-inp2" data-field="reason" oninput="updateReason2Disp(this)" onblur="saveApptRow2(this)">'
     +'<div class="reason-disp2" style="font-size:11px;color:#555;margin-top:2px;">'+formatReason2(rn)+'</div>'
     +'</td>'
-    +'<td style="'+td+'"><input style="'+inp+'width:95px;" value="'+escQ2(data?data.note||'':'')+'" placeholder="기타" class="appt-inp2" data-field="note" onblur="saveApptRow2(this)"></td>'
-    +'<td style="'+td+'"><input style="'+inp+'width:105px;" value="'+escQ2(data?data.memo||'':'')+'" placeholder="비고" class="appt-inp2" data-field="memo" onblur="saveApptRow2(this)"></td>'
+    +'<td style="'+td+';min-width:130px;"><input style="'+inp+'width:100%;min-width:120px;" value="'+escQ2(data?data.note||'':'')+'" placeholder="기타" class="appt-inp2" data-field="note" onblur="saveApptRow2(this)"></td>'
+    +'<td style="'+td+';min-width:150px;"><input style="'+inp+'width:100%;min-width:140px;" value="'+escQ2(data?data.memo||'':'')+'" placeholder="비고(내부용)" class="appt-inp2" data-field="memo" onblur="saveApptRow2(this)"></td>'
     +'<td style="'+td+';white-space:nowrap;">'
     +'<button onclick="saveApptRow2Btn(this)" style="font-size:11px;padding:3px 8px;background:#18a97a;color:#fff;border:none;border-radius:4px;cursor:pointer;margin-right:3px;">저장</button>'
-    +(id?'<button onclick="deleteAppt2('+id+')" style="font-size:11px;padding:3px 7px;background:none;border:1px solid #fbb;color:#e53e3e;border-radius:4px;cursor:pointer;">삭제</button>':'')
+    +(id?'<button onclick="deleteAppt2(\''+id+'\')" style="font-size:11px;padding:3px 7px;background:none;border:1px solid #fbb;color:#e53e3e;border-radius:4px;cursor:pointer;">삭제</button>':'')
     +'<span class="appt-status2" style="font-size:10px;margin-left:2px;"></span>'
     +'</td>'
     +'</tr>';
