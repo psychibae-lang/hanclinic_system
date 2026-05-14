@@ -1065,20 +1065,39 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div style="max-width:480px;margin:0 auto;padding:24px 16px;">
       <div style="font-size:18px;font-weight:700;color:#1a3a5c;margin-bottom:16px;">📞 전화번호 변경</div>
 
-      <!-- STEP 1: 차트번호 조회 -->
+      <!-- STEP 1: 조회 -->
       <div id="pc-step1">
-        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-          <div style="margin-bottom:16px;">
-            <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">차트번호</label>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:12px;">
+          <div style="margin-bottom:12px;">
+            <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">차트번호로 조회</label>
             <input type="text" id="phone-chart" placeholder="차트번호 입력" inputmode="numeric"
               onkeydown="if(event.key==='Enter')pcSearch()"
               style="width:100%;padding:12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:16px;font-weight:700;outline:none;box-sizing:border-box;">
           </div>
           <button onclick="pcSearch()"
             style="width:100%;padding:14px;background:#1d4ed8;color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;">
-            🔍 현재 전화번호 조회
+            🔍 차트번호로 조회
           </button>
           <div id="pc-search-msg" style="margin-top:12px;font-size:14px;font-weight:700;text-align:center;min-height:20px;"></div>
+        </div>
+
+        <!-- 전화번호로 조회 -->
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:20px;">
+          <div style="margin-bottom:12px;">
+            <label style="font-size:14px;font-weight:700;color:#374151;display:block;margin-bottom:8px;">전화번호로 차트번호 조회</label>
+            <input type="text" id="phone-search-input" placeholder="전화번호 입력 (예: 01012345678)" inputmode="tel"
+              onkeydown="if(event.key==='Enter')pcSearchByPhone()"
+              style="width:100%;padding:12px;border:1.5px solid #bbf7d0;border-radius:8px;font-size:16px;font-weight:700;outline:none;box-sizing:border-box;">
+          </div>
+          <button onclick="pcSearchByPhone()"
+            style="width:100%;padding:14px;background:#16a34a;color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;">
+            🔍 전화번호로 차트번호 찾기
+          </button>
+          <div id="pc-phone-search-msg" style="margin-top:12px;font-size:14px;font-weight:700;text-align:center;min-height:20px;"></div>
+          <div id="pc-phone-search-result" style="margin-top:10px;display:none;background:#fff;border:1px solid #bbf7d0;border-radius:8px;padding:14px;">
+            <div style="font-size:12px;color:#16a34a;font-weight:700;margin-bottom:8px;">📋 조회 결과</div>
+            <div id="pc-phone-search-list"></div>
+          </div>
         </div>
       </div>
 
@@ -3150,6 +3169,63 @@ async function pcSearch() {
     console.error(e);
   }
 }
+
+async function pcSearchByPhone() {
+  const phoneRaw = document.getElementById('phone-search-input').value.trim();
+  const msgEl    = document.getElementById('pc-phone-search-msg');
+  const resultEl = document.getElementById('pc-phone-search-result');
+  const listEl   = document.getElementById('pc-phone-search-list');
+
+  if (!phoneRaw) {
+    msgEl.textContent = '⚠️ 전화번호를 입력하세요.';
+    msgEl.style.color = '#c0392b';
+    return;
+  }
+
+  // 하이픈 제거 후 유사 검색
+  const phone = phoneRaw.replace(/-/g, '');
+  msgEl.textContent = '조회 중...';
+  msgEl.style.color = '#888';
+  resultEl.style.display = 'none';
+
+  try {
+    // 전화번호 포함 검색 (like)
+    const r = await fetch(
+      `${SUPA_URL}/rest/v1/patients?phone=like.*${encodeURIComponent(phone)}*&select=chart_no,phone&order=chart_no.asc&limit=20`,
+      { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` } }
+    );
+    const data = await r.json();
+
+    if (!data || data.length === 0) {
+      msgEl.textContent = '❌ 일치하는 차트번호가 없습니다.';
+      msgEl.style.color = '#c0392b';
+      return;
+    }
+
+    msgEl.textContent = `✅ ${data.length}건 조회됨`;
+    msgEl.style.color = '#16a34a';
+
+    listEl.innerHTML = data.map(p =>
+      `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0fdf4;">
+        <div>
+          <span style="font-family:monospace;font-size:15px;font-weight:700;color:#1e40af;background:#dbeafe;padding:2px 8px;border-radius:4px;">${p.chart_no}</span>
+          <span style="font-size:14px;color:#374151;margin-left:10px;">${p.phone || '번호없음'}</span>
+        </div>
+        <button onclick="document.getElementById('phone-chart').value='${p.chart_no}';pcSearch();"
+          style="font-size:12px;padding:5px 12px;background:#1d4ed8;color:#fff;border:none;border-radius:6px;cursor:pointer;">
+          선택
+        </button>
+      </div>`
+    ).join('');
+
+    resultEl.style.display = 'block';
+
+  } catch(e) {
+    msgEl.textContent = '❌ 오류: ' + e.message;
+    msgEl.style.color = '#c0392b';
+  }
+}
+
 
 // 전화번호 변경 - STEP2: 변경
 async function changePhone() {
