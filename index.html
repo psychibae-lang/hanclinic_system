@@ -1006,12 +1006,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <!-- ══════════════════════════════════ -->
 <div class="screen" id="s-recep">
   <div style="background:#1d4ed8;color:#fff;text-align:center;padding:10px;font-size:15px;font-weight:700;">한강의원 접수관리 <span style="opacity:0.7;font-size:12px;">(접수컴퓨터용)</span></div>
-  <div class="sub-hdr" style="grid-template-columns:repeat(6,1fr)">
+  <div class="sub-hdr" style="grid-template-columns:repeat(7,1fr)">
     <span class="act" onclick="switchRecepTab('remote',this)">원격검사</span>
     <span onclick="window.open('https://temp-share-image-hanriver.web.app/','_blank')" style="background:#e67e22;">임시이미지공유</span>
     <span onclick="switchRecepTab('status2',this)">완료 현황</span>
     <span onclick="switchRecepTab('search2',this)">접수 조회</span>
     <span onclick="switchRecepTab('appt',this);loadAppts()">예약</span>
+    <span onclick="switchRecepTab('daeri2',this);loadDaeri2()">대리처방</span>
     <span onclick="switchRecepTab('phone',this)">전화번호변경</span>
   </div>
 
@@ -1128,6 +1129,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
 
+    </div>
+  </div>
+
+<!-- ══ 대리처방 탭 (접수컴퓨터용) ══ -->
+  <div class="tab-content" id="recep-tab-daeri2" style="font-weight:700">
+    <div style="max-width:740px;margin:0 auto;padding:14px 12px;">
+      <!-- 헤더 -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+        <div style="font-size:16px;font-weight:700;color:#1a3a5c;">📋 대리처방 신청 명단</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span id="daeri2Count" style="font-size:13px;color:#888;font-weight:600;"></span>
+          <button onclick="loadDaeri2()" style="padding:6px 14px;background:#1d4ed8;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;">🔄 새로고침</button>
+        </div>
+      </div>
+      <!-- 검색 필터 -->
+      <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;align-items:center;background:#f0f4ff;border-radius:8px;padding:8px 10px;">
+        <input id="d2SearchChart" type="text" placeholder="챠트" style="width:70px;padding:6px 8px;border:1px solid #c7d9fb;border-radius:6px;font-size:13px;font-weight:600;" oninput="filterDaeri2()">
+        <input id="d2SearchName" type="text" placeholder="환자명" style="width:80px;padding:6px 8px;border:1px solid #c7d9fb;border-radius:6px;font-size:13px;font-weight:600;" oninput="filterDaeri2()">
+        <input id="d2SearchYear" type="text" placeholder="년도(예:2604)" style="width:100px;padding:6px 8px;border:1px solid #c7d9fb;border-radius:6px;font-size:13px;font-weight:600;" oninput="filterDaeri2()">
+        <button onclick="d2SearchChart.value='';d2SearchName.value='';d2SearchYear.value='';filterDaeri2();" style="padding:5px 10px;border:1px solid #ddd;border-radius:6px;font-size:12px;background:#fff;cursor:pointer;color:#888;font-weight:600;">초기화</button>
+      </div>
+      <!-- 상태 -->
+      <div id="daeri2Status" style="display:none;padding:8px 12px;border-radius:7px;font-size:13px;margin-bottom:8px;"></div>
+      <!-- 테이블 -->
+      <div style="overflow-x:auto;">
+        <table id="daeri2Table" style="width:100%;border-collapse:collapse;font-size:13px;font-weight:600;">
+          <thead>
+            <tr style="background:#f0f4ff;">
+              <th onclick="sortDaeri2('chart')" style="padding:8px 8px;text-align:left;border-bottom:2px solid #c7d9fb;cursor:pointer;white-space:nowrap;min-width:56px;">챠트 <span id="d2sort_chart">↕</span></th>
+              <th onclick="sortDaeri2('visitor_name')" style="padding:8px 8px;text-align:left;border-bottom:2px solid #c7d9fb;cursor:pointer;min-width:58px;">방문자 <span id="d2sort_visitor_name">↕</span></th>
+              <th onclick="sortDaeri2('relation')" style="padding:8px 6px;text-align:left;border-bottom:2px solid #c7d9fb;cursor:pointer;max-width:110px;">관계 <span id="d2sort_relation">↕</span></th>
+              <th onclick="sortDaeri2('patient_name')" style="padding:8px 8px;text-align:left;border-bottom:2px solid #c7d9fb;cursor:pointer;min-width:58px;">환자명 <span id="d2sort_patient_name">↕</span></th>
+              <th onclick="sortDaeri2('visitor_phone')" style="padding:8px 8px;text-align:left;border-bottom:2px solid #c7d9fb;cursor:pointer;min-width:95px;">방문자 전화 <span id="d2sort_visitor_phone">↕</span></th>
+              <th onclick="sortDaeri2('created_at')" style="padding:8px 8px;text-align:left;border-bottom:2px solid #c7d9fb;cursor:pointer;min-width:56px;">신청일 <span id="d2sort_created_at">↓</span></th>
+            </tr>
+          </thead>
+          <tbody id="daeri2Body"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -3017,6 +3057,7 @@ function switchRecepTab(tab, el) {
   if (t) t.classList.add('act');
   if (el) el.classList.add('act');
   if (tab === 'status2') loadStatus2();
+  if (tab === 'daeri2') loadDaeri2();
 }
 
 // 접수컴퓨터용 완료현황 - sb 클라이언트 사용, status-list-body2에 렌더
@@ -3664,6 +3705,102 @@ async function saveClinResult(){
 
   if(saveError){ toast('저장 실패: '+saveError.message); return; }
   toast('✅ '+scale.title+' 저장 완료! ('+ptNum+')');
+}
+
+// ══ 대리처방 탭 (접수컴퓨터용) ══════════════════════════
+var _daeri2AllRows = [];
+var _daeri2SortCol = 'created_at';
+var _daeri2SortDir = -1;
+
+async function loadDaeri2() {
+  var statusEl = document.getElementById('daeri2Status');
+  var countEl  = document.getElementById('daeri2Count');
+  if (!statusEl) return;
+  statusEl.style.display = 'block';
+  statusEl.style.background = '#eef3fe';
+  statusEl.style.color = '#4f8ef7';
+  statusEl.textContent = '조회 중...';
+  try {
+    var r = await fetch(SUPA_URL + '/rest/v1/daeri?select=chart,visitor_name,visitor_phone,relation,patient_name,created_at&order=created_at.desc&limit=500',
+      { headers: { 'apikey': SUPA_ANON, 'Authorization': 'Bearer ' + SUPA_ANON }});
+    var rows = await r.json();
+    if (!Array.isArray(rows)) throw new Error('조회 실패');
+    _daeri2AllRows = rows;
+    if (countEl) countEl.textContent = rows.length + '명';
+    renderDaeri2Table();
+    statusEl.style.background = '#e6f7f1';
+    statusEl.style.color = '#18a97a';
+    statusEl.textContent = '조회 완료';
+    setTimeout(function(){ statusEl.style.display='none'; }, 1500);
+  } catch(e) {
+    statusEl.style.background = '#fef0f0';
+    statusEl.style.color = '#e53e3e';
+    statusEl.textContent = '실패: ' + e.message;
+  }
+}
+
+function d2caToD6(ca) {
+  if (!ca) return '';
+  var d = new Date(ca);
+  if (isNaN(d.getTime())) return '';
+  return String(d.getFullYear()).slice(2) + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+}
+
+function renderDaeri2Table() {
+  var sc = (document.getElementById('d2SearchChart') || {}).value || '';
+  var sn = (document.getElementById('d2SearchName')  || {}).value || '';
+  var sy = (document.getElementById('d2SearchYear')  || {}).value || '';
+  sc = sc.trim().toLowerCase(); sn = sn.trim().toLowerCase(); sy = sy.trim();
+
+  var filtered = _daeri2AllRows.filter(function(r) {
+    var d6 = d2caToD6(r.created_at);
+    if (sc && !(r.chart||'').toLowerCase().includes(sc)) return false;
+    if (sn && !(r.patient_name||'').toLowerCase().includes(sn)) return false;
+    if (sy && !d6.startsWith(sy)) return false;
+    return true;
+  });
+
+  var col = _daeri2SortCol, dir = _daeri2SortDir;
+  filtered.sort(function(a,b){
+    var av = a[col] || '', bv = b[col] || '';
+    if (av < bv) return -dir; if (av > bv) return dir; return 0;
+  });
+
+  // 헤더 화살표 갱신
+  ['chart','visitor_name','relation','patient_name','visitor_phone','created_at'].forEach(function(c) {
+    var el = document.getElementById('d2sort_' + c);
+    if (el) el.textContent = c === col ? (dir === 1 ? '↑' : '↓') : '↕';
+  });
+
+  var tbody = document.getElementById('daeri2Body');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:#aaa;font-weight:600;">데이터 없음</td></tr>';
+    return;
+  }
+  filtered.forEach(function(r) {
+    var d6 = d2caToD6(r.created_at);
+    var chart = r.chart || '-';
+    var tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid #f0f2f8';
+    tr.innerHTML =
+      '<td style="padding:9px 8px;"><span style="font-family:monospace;font-size:13px;color:#b45309;background:#fef3c7;padding:2px 7px;border-radius:4px;border:1px solid #fde68a;">' + chart + '</span></td>'
+      + '<td style="padding:9px 8px;white-space:nowrap;font-size:14px;">' + (r.visitor_name||'-') + '</td>'
+      + '<td style="padding:9px 6px;font-size:11px;color:#555;max-width:110px;word-break:keep-all;">' + (r.relation||'-') + '</td>'
+      + '<td style="padding:9px 8px;white-space:nowrap;font-size:14px;">' + (r.patient_name||'-') + '</td>'
+      + '<td style="padding:9px 8px;font-family:monospace;font-size:13px;white-space:nowrap;">' + (r.visitor_phone||'-') + '</td>'
+      + '<td style="padding:9px 8px;font-size:13px;white-space:nowrap;">' + d6 + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+function filterDaeri2() { renderDaeri2Table(); }
+
+function sortDaeri2(col) {
+  if (_daeri2SortCol === col) { _daeri2SortDir *= -1; }
+  else { _daeri2SortCol = col; _daeri2SortDir = 1; }
+  renderDaeri2Table();
 }
 
 // ══ 예약 탭 ══════════════════════════════════════════
