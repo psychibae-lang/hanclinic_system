@@ -1145,7 +1145,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <button onclick="loadSelcareList()" style="padding:7px 16px;background:#1d4ed8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">🔄 새로고침</button>
         </div>
       </div>
-
       <!-- 필터 -->
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;">
         <select id="selcareFilter" onchange="renderSelcareTable()" style="padding:6px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;font-weight:600;">
@@ -1155,9 +1154,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </select>
         <input type="text" id="selcareSearch" placeholder="차트번호 검색" oninput="renderSelcareTable()" style="padding:6px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;max-width:140px;">
       </div>
-
       <div id="selcareStatus" style="padding:10px;font-size:13px;color:#64748b;text-align:center;min-height:30px;"></div>
-
       <div style="overflow-x:auto;">
         <table id="selcareTable" style="width:100%;border-collapse:collapse;font-size:13px;">
           <thead>
@@ -1218,7 +1215,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 
 <!-- ══ 예약 탭 ══ -->
-  <div class="tab-content act" id="recep-tab-appt" style="font-weight:700;font-size:calc(1em + 4px)">
+  <div class="tab-content" id="recep-tab-appt" style="font-weight:700;font-size:calc(1em + 4px)">
     <div style="padding:10px 14px;display:flex;justify-content:space-between;align-items:center;background:#f7f8fc;border-bottom:1px solid #e0e4ef;">
       <span style="font-size:14px;font-weight:700;color:#333;">📅 예약 현황 (오늘~8일)</span>
       <button id="apptLoadBtn" onclick="loadAppts()" style="font-size:12px;padding:5px 12px;background:#4f8ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;">🔄 새로고침</button>
