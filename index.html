@@ -1006,7 +1006,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <!-- ══════════════════════════════════ -->
 <div class="screen" id="s-recep">
   <div style="background:#1d4ed8;color:#fff;text-align:center;padding:10px;font-size:15px;font-weight:700;">한강의원 접수관리 <span style="opacity:0.7;font-size:12px;">(접수컴퓨터용)</span></div>
-  <div class="sub-hdr" style="grid-template-columns:repeat(7,1fr)">
+  <div class="sub-hdr" style="grid-template-columns:repeat(8,1fr)">
     <span class="act" onclick="switchRecepTab('remote',this)">원격검사</span>
     <span onclick="window.open('https://temp-share-image-hanriver.web.app/','_blank')" style="background:#e67e22;">임시이미지공유</span>
     <span onclick="switchRecepTab('status2',this)">완료 현황</span>
@@ -1014,6 +1014,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <span onclick="switchRecepTab('appt',this);loadAppts()">예약</span>
     <span onclick="switchRecepTab('daeri2',this);loadDaeri2()">대리처방</span>
     <span onclick="switchRecepTab('phone',this)">전화번호변경</span>
+    <span onclick="switchRecepTab('selcare',this);loadSelcareList()">선택의료</span>
   </div>
 
   <!-- 원격검사 탭 (링크 발급) -->
@@ -1129,6 +1130,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
 
+    </div>
+  </div>
+
+  </div>
+
+<!-- ══ 선택의료 탭 (접수컴퓨터용) ══ -->
+  <div class="tab-content" id="recep-tab-selcare" style="font-weight:700">
+    <div style="max-width:760px;margin:0 auto;padding:14px 12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+        <div style="font-size:16px;font-weight:700;color:#1a3a5c;">⭐ 선택의료 환자 명단</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span id="selcareCount" style="font-size:13px;color:#64748b;font-weight:600;"></span>
+          <button onclick="loadSelcareList()" style="padding:7px 16px;background:#1d4ed8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">🔄 새로고침</button>
+        </div>
+      </div>
+
+      <!-- 필터 -->
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;">
+        <select id="selcareFilter" onchange="renderSelcareTable()" style="padding:6px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;font-weight:600;">
+          <option value="all">전체</option>
+          <option value="received">서류수령</option>
+          <option value="pending">서류미수령</option>
+        </select>
+        <input type="text" id="selcareSearch" placeholder="차트번호 검색" oninput="renderSelcareTable()" style="padding:6px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;max-width:140px;">
+      </div>
+
+      <div id="selcareStatus" style="padding:10px;font-size:13px;color:#64748b;text-align:center;min-height:30px;"></div>
+
+      <div style="overflow-x:auto;">
+        <table id="selcareTable" style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:#eff6ff;border-bottom:2px solid #bfdbfe;">
+              <th style="padding:8px 10px;text-align:left;color:#1e40af;font-weight:700;">차트번호</th>
+              <th style="padding:8px 10px;text-align:left;color:#1e40af;font-weight:700;">최근내원일</th>
+              <th style="padding:8px 10px;text-align:left;color:#1e40af;font-weight:700;">다음내원일</th>
+              <th style="padding:8px 10px;text-align:left;color:#1e40af;font-weight:700;">전화번호</th>
+              <th style="padding:8px 10px;text-align:left;color:#1e40af;font-weight:700;">서류받은날짜</th>
+              <th style="padding:8px 10px;text-align:left;color:#1e40af;font-weight:700;">서류수령</th>
+            </tr>
+          </thead>
+          <tbody id="selcareBody">
+            <tr><td colspan="6" style="padding:20px;text-align:center;color:#94a3b8;">조회 버튼을 눌러주세요</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -3981,10 +4027,128 @@ async function deleteAppt2(id){
   }catch(e){alert('삭제 실패: '+e.message);}
 }
 
+// ══ 선택의료 탭 (접수컴퓨터용) ══════════════════════════
+var _selcareAllRows = [];
 
+async function loadSelcareList() {
+  var statusEl = document.getElementById('selcareStatus');
+  var countEl  = document.getElementById('selcareCount');
+  if (!statusEl) return;
+  statusEl.textContent = '조회 중...';
+  try {
+    // visits 테이블에서 selective_care='Y' 조회 (proxy_rx = 서류받은날짜)
+    var r = await fetch(
+      SUPA_URL + '/rest/v1/visits?selective_care=eq.Y&select=chart_no,visit_date,next_visit_date,proxy_rx&order=next_visit_date.desc&limit=500',
+      { headers: { 'apikey': SUPA_ANON, 'Authorization': 'Bearer ' + SUPA_ANON } }
+    );
+    var visits = await r.json();
+    if (!Array.isArray(visits)) throw new Error('조회 실패');
 
+    // 전화번호 조회
+    var chartNos = visits.map(function(v){ return v.chart_no; });
+    var phones = {};
+    if (chartNos.length > 0) {
+      var r2 = await fetch(
+        SUPA_URL + '/rest/v1/patients?chart_no=in.(' + chartNos.join(',') + ')&select=chart_no,phone',
+        { headers: { 'apikey': SUPA_ANON, 'Authorization': 'Bearer ' + SUPA_ANON } }
+      );
+      var pats = await r2.json();
+      if (Array.isArray(pats)) pats.forEach(function(p){ phones[p.chart_no] = p.phone || ''; });
+    }
 
+    _selcareAllRows = visits.map(function(v){
+      return {
+        chart_no: v.chart_no,
+        visit_date: v.visit_date || '',
+        next_visit_date: v.next_visit_date || '',
+        proxy_rx: v.proxy_rx || '',   // 서류받은날짜
+        phone: phones[v.chart_no] || ''
+      };
+    });
 
+    if (countEl) countEl.textContent = _selcareAllRows.length + '명';
+    renderSelcareTable();
+    statusEl.textContent = '';
+  } catch(err) {
+    statusEl.textContent = '조회 실패: ' + err.message;
+  }
+}
+
+function selcareDisplayDate(d6) {
+  if (!d6) return '-';
+  var s = String(d6).replace(/\D/g,'');
+  if (s.length < 6) return d6;
+  var yy = s.slice(0,2), mm = s.slice(2,4), dd = s.slice(4,6);
+  var days = ['일','월','화','수','목','금','토'];
+  var day = new Date('20'+yy+'-'+mm+'-'+dd).getDay();
+  return '2'+yy+'년 '+parseInt(mm)+'월 '+parseInt(dd)+'일 ('+days[day]+')';
+}
+
+function renderSelcareTable() {
+  var filter = (document.getElementById('selcareFilter') || {}).value || 'all';
+  var search = ((document.getElementById('selcareSearch') || {}).value || '').trim();
+  var rows = _selcareAllRows.filter(function(r) {
+    if (search && String(r.chart_no).indexOf(search) < 0) return false;
+    if (filter === 'received' && !r.proxy_rx) return false;
+    if (filter === 'pending'  &&  r.proxy_rx) return false;
+    return true;
+  });
+
+  var tbody = document.getElementById('selcareBody');
+  if (!tbody) return;
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="padding:20px;text-align:center;color:#94a3b8;">해당하는 환자가 없습니다</td></tr>';
+    return;
+  }
+
+  var html = '';
+  rows.forEach(function(r) {
+    var received = r.proxy_rx
+      ? '<span style="background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;">✓ ' + r.proxy_rx + '</span>'
+      : '<span style="background:#fee2e2;color:#b91c1c;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;">미수령</span>';
+    var recvDate = r.proxy_rx ? r.proxy_rx : '';
+    html += '<tr style="border-bottom:1px solid #e2e8f0;">'
+      + '<td style="padding:8px 10px;font-family:monospace;font-weight:700;color:#1e40af;">' + r.chart_no + '</td>'
+      + '<td style="padding:8px 10px;font-size:12px;">' + selcareDisplayDate(r.visit_date) + '</td>'
+      + '<td style="padding:8px 10px;font-size:12px;">' + (r.next_visit_date ? selcareDisplayDate(r.next_visit_date) : '-') + '</td>'
+      + '<td style="padding:8px 10px;font-family:monospace;font-size:12px;">' + (r.phone || '-') + '</td>'
+      + '<td style="padding:8px 10px;">' + received + '</td>'
+      + '<td style="padding:8px 10px;">'
+      +   '<input type="text" value="' + recvDate + '" placeholder="예: 260515" maxlength="6" inputmode="numeric"'
+      +   ' style="width:80px;padding:4px 7px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;text-align:center;"'
+      +   ' onchange="saveSelcareDate(\'' + r.chart_no + '\',this.value,this)">'
+      + '</td>'
+      + '</tr>';
+  });
+  tbody.innerHTML = html;
+}
+
+async function saveSelcareDate(chartNo, dateVal, inputEl) {
+  var val = dateVal.trim();
+  try {
+    // visits 테이블 proxy_rx 업데이트
+    var r = await fetch(
+      SUPA_URL + '/rest/v1/visits?chart_no=eq.' + encodeURIComponent(chartNo),
+      {
+        method: 'PATCH',
+        headers: { 'apikey': SUPA_ANON, 'Authorization': 'Bearer ' + SUPA_ANON,
+                   'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ proxy_rx: val })
+      }
+    );
+    if (!r.ok) throw new Error(r.status);
+    // 로컬 데이터 업데이트
+    var row = _selcareAllRows.find(function(x){ return x.chart_no == chartNo; });
+    if (row) row.proxy_rx = val;
+    if (inputEl) {
+      inputEl.style.background = '#d1fae5';
+      setTimeout(function(){ if(inputEl) inputEl.style.background=''; renderSelcareTable(); }, 1000);
+    }
+  } catch(err) {
+    if (inputEl) { inputEl.style.background = '#fee2e2'; }
+    alert('저장 실패: ' + err.message);
+  }
+}
 </script>
 </body>
 </html>
